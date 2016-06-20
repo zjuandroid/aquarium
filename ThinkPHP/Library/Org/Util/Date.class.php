@@ -582,4 +582,8 @@ class Date {
     public function getHour() {
         return $this->hour;
     }
+
+    public function getDate() {
+        return $this->date;
+    }
 }

@@ -172,7 +172,7 @@ class FishController extends BaseController {
 
 //        dump($startDate->lastDayOfMonth()->getDay());
         for ($i = $day; $i <= ($startDate->lastDayOfMonth()->getDay()); $i++) {
-            for ($j = 1; $j <= 24; $j++) {
+            for ($j = 0; $j <= 23; $j++) {
                 $condition['thermometer_id'] = $thermometer_id;
                 $condition['year'] = $year;
                 $condition['month'] = $month;
@@ -187,7 +187,7 @@ class FishController extends BaseController {
 
         if ($month != $nowMonth) {
             for ($i = 1; $i <= $nowDay; $i++) {
-                for ($j = 1; $j <= 24; $j++) {
+                for ($j = 0; $j <= 23; $j++) {
                     $condition['thermometer_id'] = $thermometer_id;
                     $condition['year'] = $nowYear;
                     $condition['month'] = $nowMonth;
@@ -311,43 +311,43 @@ class FishController extends BaseController {
 
         $dao = M('thermometer_his');
         if($type == 'hour') {
-            $startDate = $nowDate->dateAdd(-24, 'h');
-            $condition['year'] = $startDate->getYear();
-            $condition['month'] = $startDate->getMonth();
-            $condition['day'] = $startDate->getDay();
-            $condition['hour'] = $startDate->getHour();
+            for($i = 24; $i >= 0; $i--) {
+                $tempDate = $nowDate->dateAdd(-$i, 'h');
+                $condition['year'] = $tempDate->getYear();
+                $condition['month'] = $tempDate->getMonth();
+                $condition['day'] = $tempDate->getDay();
+                $condition['hour'] = $tempDate->getHour();
 
-            $num = 0;
-            for($i = $condition['hour']; $i <= 24; $i++ ) {
-                $condition['hour'] = $i;
-                $xy['x'] = $i;
+                $xy['x'] = $tempDate->getDate();
                 $xy['y'] = $dao->where($condition)->getField('temperature');
-                $data['xy'][$num++] = $xy;
+                $data['xy'][24-$i] = $xy;
             }
-            if($nowDay != $condition['day']) {
-                for($i = 1; $i <= $nowHour; $i++) {
-                    $condition['hour'] = $i;
-                    $xy['x'] = $i;
-                    $xy['y'] = $dao->where($condition)->getField('temperature');
-                    $data['xy'][$num++] = $xy;
-                }
-            }
-            dump(date(date('Y-m-d H:i:s')));
-            dump(time());
         }
         else if($type == 'day') {
-            $startDate = $nowDate->dateAdd(-7, 'd');
-            $condition['year'] = $startDate->getYear();
-            $condition['month'] = $startDate->getMonth();
-            $condition['day'] = $startDate->getDay();
-            $condition['hour'] = $startDate->getHour();
+            for($i = 24*7; $i >= 0; $i--) {
+                $tempDate = $nowDate->dateAdd(-$i, 'h');
+                $condition['year'] = $tempDate->getYear();
+                $condition['month'] = $tempDate->getMonth();
+                $condition['day'] = $tempDate->getDay();
+                $condition['hour'] = $tempDate->getHour();
 
-            if($nowMonth != $condition['month']) {
-                for($i = $condition['day']; $i <= $startDate->lastDayOfMonth()->getDay(); $i++) {
-                    $step = 24/C('DAY_DOT_NUM');
-                }
+                $xy['x'] = $tempDate->getDate();
+                $xy['y'] = $dao->where($condition)->getField('temperature');
+                $data['xy'][24*7-$i] = $xy;
             }
+        }
+        else if($type == 'month') {
+                for($i = 24*7*4; $i >= 0; $i--) {
+                    $tempDate = $nowDate->dateAdd(-$i, 'h');
+                    $condition['year'] = $tempDate->getYear();
+                    $condition['month'] = $tempDate->getMonth();
+                    $condition['day'] = $tempDate->getDay();
+                    $condition['hour'] = $tempDate->getHour();
 
+                    $xy['x'] = $tempDate->getDate();
+                    $xy['y'] = $dao->where($condition)->getField('temperature');
+                    $data['xy'][24*7*4-$i] = $xy;
+                }
         }
 
         echo (wrapResult('CM0000', $data));

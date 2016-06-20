@@ -286,7 +286,9 @@ class TestController extends Controller{
         $post_data['userid'] = 1;
         $post_data['fishTankId'] = 1;
         $post_data['thermometerId'] = 1;
-        $post_data['type'] = 'hour';
+//        $post_data['type'] = 'hour';
+//        $post_data['type'] = 'day';
+        $post_data['type'] = 'month';
 
         $res = request_post($url, $post_data);
         print_r($res);
@@ -298,7 +300,7 @@ class TestController extends Controller{
 //        $a = '[1,2,4]';
 //        $obj = json_decode($a);
 //        dump($obj);
-        echo time();
+        echo date("Y-m-d H:i:s",1466354044);     # 格式化时间戳
     }
 
 }

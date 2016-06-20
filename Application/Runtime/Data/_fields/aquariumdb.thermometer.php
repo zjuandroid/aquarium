@@ -1,0 +1,1 @@
+a:9:{i:0;s:2:"id";i:1;s:4:"name";i:2;s:8:"max_temp";i:3;s:8:"min_temp";i:4;s:8:"cur_temp";i:5;s:9:"dis_order";i:6;s:7:"tank_id";s:3:"_pk";s:2:"id";s:5:"_type";a:7:{s:2:"id";s:7:"int(11)";s:4:"name";s:11:"varchar(20)";s:8:"max_temp";s:5:"float";s:8:"min_temp";s:5:"float";s:8:"cur_temp";s:5:"float";s:9:"dis_order";s:10:"tinyint(4)";s:7:"tank_id";s:7:"int(11)";}}
