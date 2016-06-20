@@ -1,0 +1,23 @@
+<include file="Public/header" title="回复意见" />
+<div id="page-wrapper">
+    <form method="post" action="{:U('category/answer')}">
+        <div class="form-group">
+            <label >用户ID：{$model.userid}</label>
+        </div>
+        <div class="form-group">
+            <label >问题时间：{$model.feedback_time}</label>
+        </div>
+        <div class="form-group">
+            <label for="ee">问题内容</label>
+            <!--<text  cols="30" rows="10" class="form-control" placeholder="{$model.content}"></text>-->
+            <textarea readonly id="e" cols="30" rows="5" class="form-control" placeholder="{$model.content}"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="ee">客服回复</label>
+            <textarea name="answer" id="ee" cols="30" rows="5" class="form-control" placeholder="请在此输入回复">{$model.description}</textarea>
+        </div>
+        <input type="hidden" name="id" value="{$model.id}">
+        <button type="submit" class="btn btn-default">回复</button>
+    </form>
+</div>
+<include file="Public/footer" />

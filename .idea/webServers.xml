@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="ddd31e52-f790-4713-871c-368a86c51518" name="aquarium" url="http://120.27.216.57">
+        <fileTransfer host="120.27.216.57" port="22" rootFolder="/alidata/www/" accessType="SFTP" password="dfeedfcfdfc4dfcddf9bdf98df99df9edf9fdf9c" username="root">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

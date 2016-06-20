@@ -1,0 +1,35 @@
+[ 2016-06-20T18:53:38+08:00 ] 127.0.0.1 /aquarium/index.php/user/custFeedback
+ERR: Cron:cron_1 Runat 2016-06-20 18:53:38 Use 0.004993 s
+
+[ 2016-06-20T18:53:38+08:00 ] 127.0.0.1 /aquarium/index.php/user/custFeedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000765s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000692s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000800s ]
+SQL: SHOW COLUMNS FROM `feedback` [ RunTime:0.0166s ]
+SQL: SELECT `id`,`answer_time`,`answer` FROM `feedback` WHERE `userid` = 1 AND `answerd` = 1 AND `isread` = 0  [ RunTime:0.0005s ]
+SQL: UPDATE `feedback` SET `isread`='1' WHERE `userid` = 1 AND `answerd` = 1 AND `isread` = 0 [ RunTime:0.0026s ]
+NOTIC: [8] Use of undefined constant code - assumed 'code' C:\wamp\www\aquarium\Application\Home\Common\function.php 第 113 行.
+NOTIC: [8] Use of undefined constant message - assumed 'message' C:\wamp\www\aquarium\Application\Home\Common\function.php 第 114 行.
+SQL: SHOW COLUMNS FROM `errcode` [ RunTime:0.0135s ]
+SQL: SELECT `msg` FROM `errcode` WHERE `code` = 'CM0000' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Use of undefined constant data - assumed 'data' C:\wamp\www\aquarium\Application\Home\Common\function.php 第 115 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001156s ]
+INFO: Run Behavior\CronRunBehavior [ RunTime:0.022462s ]
+INFO: [ app_end ] --END-- [ RunTime:0.024043s ]
+
+[ 2016-06-20T18:53:38+08:00 ] 127.0.0.1 /aquarium/index.php/test/custFeedback
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000068s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001842s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000981s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001094s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000880s ]
+INFO: Run Behavior\CronRunBehavior [ RunTime:0.003269s ]
+INFO: [ app_end ] --END-- [ RunTime:0.004385s ]
+
