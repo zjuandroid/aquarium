@@ -354,4 +354,52 @@ class FishController extends BaseController {
 
     }
 
+    function getSocketInfo() {
+        $condition['id'] = I('post.socketId');
+        $dao = M('socket')->where($condition);
+        $ret['name'] = $dao->getField('name');
+        $ret['usage_month'] = $dao->getField('usage_month');
+        $ret['usage_total'] = $dao->getField('usage_total');
+
+        $str = $dao->getField('port_list');
+        $str = changeBracket($str);
+//        $portList = M('socket_port')->field('id,name,status,dis_order,deviceId,deviceType,timer_list_name,timer_list')->where('id in '.$str)->select();
+//        $portList = M('socket_port')->where('id in '.$str)->getField('id,name,status,dis_order,deviceId,deviceType,timer_list_name,timer_list');
+        $portList = M('socket_port')->field('socket_id', true)->where('id in '.$str)->order('dis_order')->select();
+
+        for($i = 0; $i < count($portList); $i++) {
+            foreach($portList[$i] as $key=>$value) {
+                if($key == 'timer_list') {
+                    $port[$key] = json_decode($value);
+                }
+                else {
+                    $port[$key] = $value;
+                }
+            }
+            $ret['portList'][$i] = $port;
+        }
+
+        echo wrapResult('CM0000', $ret);
+    }
+
+    function getTimerList() {
+        $str = I('post.timerList');
+        $str = changeBracket($str);
+
+        $timerList = M('timer')->field('name,socket_port', true)->where('id in '.$str)->select();
+        for($i = 0; $i < count($timerList); $i++) {
+            foreach($timerList[$i] as $key=>$value) {
+                if($key == 'day_list') {
+                    $timer[$key] = json_decode($value);
+                }
+                else {
+                    $timer[$key] = $value;
+                }
+            }
+            $ret['timerList'][$i] = $timer;
+        }
+
+        echo wrapResult('CM0000', $ret);
+    }
+
 }

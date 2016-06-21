@@ -419,20 +419,30 @@ name VARCHAR (20),
 status tinyint(1) DEFAULT 0 COMMENT '0:关闭,1:打开',
 deviceId int(11) DEFAULT NULL,
 deviceType int(2) COMMENT '1:灯，2:加热棒',
-icon varchar(40),
+#icon varchar(40),
 dis_order tinyint COMMENT '1-6',
 socket_id int(11),
-timer_list VARCHAR (100)
+timer_list VARCHAR (100),
+timer_list_name VARCHAR (20)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO socket_port(name, status, deviceId, deviceType, icon, dis_order, timer_list,socket_id)
+#INSERT INTO socket_port(name, status, deviceId, deviceType, icon, dis_order, timer_list,socket_id,timer_list_name)
+#VALUES
+#('灯1',1,1,1,'eaa.png',1, '[1,2]',1, '灯插座'),
+#('灯2',1,2,1,'eaa.png',2,'[1,2]',1,'灯插座'),
+#('灯3',1,1,1,'eaa.png',3, '[1,2]',1,'温度计插座'),
+#('灯4',1,1,1,'eaa.png',4, '[1,2]',1,'灯插座'),
+#('',0,1,1,'eaa.png',5, '',1,''),
+#('',0,1,1,'eaa.png',6, '',1, '');
+
+INSERT INTO socket_port(name, status, deviceId, deviceType, dis_order, timer_list,socket_id,timer_list_name)
 VALUES
-('灯1',1,1,1,'eaa.png',1, '[1,2]',1),
-('灯2',1,2,1,'eaa.png',2,'[1,2]',1),
-('灯3',1,1,1,'eaa.png',3, '[1,2]',1),
-('灯4',1,1,1,'eaa.png',4, '[1,2]',1),
-('无',0,1,1,'eaa.png',5, '[1,2]',1),
-('无',0,1,1,'eaa.png',6, '[1,2]',1);
+('灯1',1,1,1,1, '[1,2]',1, '灯插座'),
+('灯2',1,2,1,2,'[1,2]',1,'灯插座'),
+('灯3',1,1,1,3, '[1,2]',1,'温度计插座'),
+('灯4',1,1,1,4, '[1,2]',1,'灯插座'),
+('',0,1,1,5, '',1,''),
+('',0,1,1,6, '',1, '');
 
 
 DROP TABLE IF EXISTS light;

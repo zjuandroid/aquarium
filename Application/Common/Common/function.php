@@ -51,3 +51,7 @@ function getSettingValueFieldByKey($key,$field)
 {
 	return M('setting')->getFieldByKey($key,$field);
 }
+
+function changeBracket($str) {
+	return str_replace(array('[', ']'), array('(',')'), $str);
+}

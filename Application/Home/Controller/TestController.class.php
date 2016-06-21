@@ -294,6 +294,23 @@ class TestController extends Controller{
         print_r($res);
     }
 
+    function getSocketInfo() {
+        $url = 'http://localhost/aquarium/index.php/fish/getSocketInfo';
+
+        $post_data['socketId'] = 1;
+        $res = request_post($url, $post_data);
+        print_r($res);
+    }
+
+    function getTimerList() {
+        $url = 'http://localhost/aquarium/index.php/fish/getTimerList';
+
+        $post_data['timerList'] = '[1,2]';
+        $post_data['userid'] = '1';
+        $res = request_post($url, $post_data);
+        print_r($res);
+    }
+
 
 
     function test() {
