@@ -311,6 +311,15 @@ class TestController extends Controller{
         print_r($res);
     }
 
+    function getLightInfo() {
+        $url = 'http://localhost/aquarium/index.php/fish/getLightInfo';
+
+        $post_data['lightId'] = 1;
+        $post_data['userid'] = '1';
+        $res = request_post($url, $post_data);
+        print_r($res);
+    }
+
 
 
     function test() {

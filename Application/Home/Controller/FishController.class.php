@@ -402,4 +402,18 @@ class FishController extends BaseController {
         echo wrapResult('CM0000', $ret);
     }
 
+    function getLightInfo() {
+        $lightId = I('post.lightId');
+
+        $data = M('light')->field('tank_id', true)->where('id = '.$lightId)->select();
+
+        if(!$data) {
+            exit(wrapResult('FH0003'));
+        }
+
+        echo (wrapResult('CM0000', $data[0]));
+    }
+
+    
+
 }
