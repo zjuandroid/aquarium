@@ -320,6 +320,16 @@ class TestController extends Controller{
         print_r($res);
     }
 
+    function addDevice() {
+        $url = 'http://localhost/aquarium/index.php/fish/addDevice';
+
+        $post_data['deviceType'] = 2;
+        $post_data['deviceName'] = 'hh';
+        $post_data['fishTankId'] = 1;
+        $post_data['userid'] = '1';
+        $res = request_post($url, $post_data);
+        print_r($res);
+    }
 
 
     function test() {

@@ -275,8 +275,10 @@ VALUES
 	('FH0001', '已存在此鱼种'),
 	('FH0002', '没有找到鱼缸'),
 	('FH0003', '没有找到此设备'),
+	('FH0004', '设备添加失败'),
+	('FH0005', '暂不支持此类设备'),
+	('FH0006', '此鱼缸该种类设备已超出最大限定个数'),
 	('SM0000', '短信发送成功'),
-	('FH0003', '没有找到温度计'),
 	('SM0010','验证信息失败'),
 	('SM0011','用户接口被禁用'),
 	('SM0020','短信余额不足'),
@@ -419,10 +421,10 @@ id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
 name VARCHAR (20),
 status tinyint(1) DEFAULT 0 COMMENT '0:关闭,1:打开',
 deviceId int(11) DEFAULT NULL,
-deviceType int(2) COMMENT '1:灯，2：温度计,3:加热棒',
+deviceType int(2) COMMENT '1:灯，2：温度计,3,六孔插座，4:水位计,5:遥控器',
 #icon varchar(40),
 dis_order tinyint COMMENT '1-6',
-socket_id int(11),
+#socket_id int(11),
 timer_list VARCHAR (100),
 timer_list_name VARCHAR (20)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -436,14 +438,14 @@ timer_list_name VARCHAR (20)
 #('',0,1,1,'eaa.png',5, '',1,''),
 #('',0,1,1,'eaa.png',6, '',1, '');
 
-INSERT INTO socket_port(name, status, deviceId, deviceType, dis_order, timer_list,socket_id,timer_list_name)
+INSERT INTO socket_port(name, status, deviceId, deviceType, dis_order, timer_list,timer_list_name)
 VALUES
-('灯1',1,1,1,1, '[1,2]',1, '灯插座'),
-('灯2',1,2,1,2,'[1,2]',1,'灯插座'),
-('灯3',1,1,1,3, '[1,2]',1,'温度计插座'),
-('灯4',1,1,1,4, '[1,2]',1,'灯插座'),
-('',0,1,1,5, '',1,''),
-('',0,1,1,6, '',1, '');
+('灯1',1,1,1,1, '[1,2]', '灯插座'),
+('灯2',1,2,1,2,'[1,2]','灯插座'),
+('灯3',1,1,1,3, '[1,2]','温度计插座'),
+('灯4',1,1,1,4, '[1,2]','灯插座'),
+('',0,1,1,5, '',''),
+('',0,1,1,6, '','');
 
 
 DROP TABLE IF EXISTS light;

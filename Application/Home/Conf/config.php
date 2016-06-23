@@ -16,6 +16,12 @@ return array(
     'DAY_DOT_NUM' => 3,
     'MONTH_DOT_NUM' => 7,
 
+    'DEVICE_TYPE_LIGHT' => 1,
+    'DEVICE_TYPE_THERMOMETER' => 2,
+    'DEVICE_TYPE_SOCKET' => 3,
+    'DEVICE_TYPE_WATER_LEVEL' => 4,
+    'DEVICE_TYPE_TELECONTROLLER' => 5
+
 
 //    /* 自动运行配置 */
 //    'CRON_CONFIG_ON' => true, // 是否开启自动运行

@@ -414,6 +414,117 @@ class FishController extends BaseController {
         echo (wrapResult('CM0000', $data[0]));
     }
 
+    function addDevice() {
+        $deviceType = I('post.deviceType');
+        $param['name'] = I('post.deviceName');
+        $param['tank_id'] = I('post.fishTankId');
+
+        //检查设备是否已超限
+        $dao = M('fishtank')->where('id='.$param['tank_id']);
+        if($deviceType == C('DEVICE_TYPE_LIGHT')) {
+            $list = $dao->getField('light_list');
+            if($list != null) {
+                $cList =  json_decode($list);
+                if(count($cList) >= 3) {
+                    exit (wrapResult('FH0006'));
+                }
+            }
+        }
+        else if($deviceType == C('DEVICE_TYPE_THERMOMETER')) {
+            $list = $dao->getField('thermometer_list');
+            if($list != null) {
+                $cList =  json_decode($list);
+                if(count($cList) >= 3) {
+                    exit (wrapResult('FH0006'));
+                }
+            }
+        }
+        else if($deviceType == C('DEVICE_TYPE_SOCKET')) {
+            $socketId = $dao->getField('socket');
+            if($socketId != null) {
+                exit (wrapResult('FH0006'));
+            }
+        }
+
+        //创建设备ID
+        $id = 0;
+        if($deviceType == C('DEVICE_TYPE_LIGHT')) {
+            $id = M('light')->add($param);
+        }
+        else if($deviceType == C('DEVICE_TYPE_THERMOMETER')) {
+            $id = M('thermometer')->add($param);
+        }
+        else if($deviceType == C('DEVICE_TYPE_SOCKET')) {
+            $dao = M('socket_port');
+            for($i = 0; $i < 6; $i++) {
+                $portlist[$i] = (int)$dao->add('name=""');
+                if(!$portlist[$i]) {
+                    exit (wrapResult('FH0004'));
+                }
+            }
+            $param['port_list'] = json_encode($portlist);
+            $id = M('socket')->add($param);
+        }
+        else {
+            exit (wrapResult('FH0005'));
+        }
+
+        if(!$id) {
+            exit (wrapResult('FH0004'));
+        }
+
+        //更新fishTank表中对应索引
+        $nId = (int) $id;
+
+
+        $dao = M('fishtank')->where('id='.$param['tank_id']);
+//        $kk = M('fishtank')->where('id=1')->select();
+//        dump($dao->select());
+//        dump($dao->select());
+        if($deviceType == C('DEVICE_TYPE_LIGHT')) {
+            $list = $dao->getField('light_list');
+            if($list == null) {
+                $cList[0] = $nId;
+            }
+            else {
+                $cList =  json_decode($list);
+                $cList[] = $nId;
+            }
+
+            $flag = $dao->setField('light_list', json_encode($cList));
+        }
+        else if($deviceType == C('DEVICE_TYPE_THERMOMETER')) {
+            $list = $dao->getField('thermometer_list');
+            dump($list);
+            if($list == null) {
+                $cList[0] = $nId;
+            }
+            else {
+                $cList =  json_decode($list);
+                $cList[] = $nId;
+            }
+            dump($cList);
+            dump(json_encode($cList));
+            dump($dao->getField('light_list'));
+            $flag = $dao->setField('light_list', json_encode($cList));
+//            dump(M('fishtank')->where('id='.$param['tank_id'])->select());
+//            $flag = M('fishtank')->where('id='.$param['tank_id'])->save('light_list='.json_encode($cList));
+//            $flag = M('fishtank')->where('id='.$param['tank_id'])->setField('light_list', json_encode($cList));
+        }
+        else if($deviceType == C('DEVICE_TYPE_SOCKET')) {
+            $flag = $dao->setField('socket', $nId);
+        }
+
+        if(!$flag) {
+            exit (wrapResult('CM0002'));
+        }
+
+        //为保持与其他接口统一，同时避免整型超出取值范围，返回值为字符串
+        $ret['deviceId'] = $id;
+
+        echo (wrapResult('CM0000', $ret));
+    }
+
     
 
 }
