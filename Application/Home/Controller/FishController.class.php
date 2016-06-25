@@ -419,8 +419,8 @@ class FishController extends BaseController {
         $param['name'] = I('post.deviceName');
         $param['tank_id'] = I('post.fishTankId');
 
-        //检查设备是否已超限
         $dao = M('fishtank')->where('id='.$param['tank_id']);
+        //检查设备是否已超限
         if($deviceType == C('DEVICE_TYPE_LIGHT')) {
             $list = $dao->getField('light_list');
             if($list != null) {
@@ -491,11 +491,12 @@ class FishController extends BaseController {
                 $cList[] = $nId;
             }
 
-            $flag = $dao->setField('light_list', json_encode($cList));
+            //下面的dao取出来不止一条记录，疑似tp的bug
+//            $flag = $dao->setField('light_list', json_encode($cList));
+            $flag = M('fishtank')->where('id='.$param['tank_id'])->setField('light_list', json_encode($cList));
         }
         else if($deviceType == C('DEVICE_TYPE_THERMOMETER')) {
             $list = $dao->getField('thermometer_list');
-            dump($list);
             if($list == null) {
                 $cList[0] = $nId;
             }
@@ -503,13 +504,10 @@ class FishController extends BaseController {
                 $cList =  json_decode($list);
                 $cList[] = $nId;
             }
-            dump($cList);
-            dump(json_encode($cList));
-            dump($dao->getField('light_list'));
-            $flag = $dao->setField('light_list', json_encode($cList));
-//            dump(M('fishtank')->where('id='.$param['tank_id'])->select());
-//            $flag = M('fishtank')->where('id='.$param['tank_id'])->save('light_list='.json_encode($cList));
-//            $flag = M('fishtank')->where('id='.$param['tank_id'])->setField('light_list', json_encode($cList));
+
+            //下面的dao取出来不止一条记录，疑似tp的bug
+//            $flag = $dao->setField('thermometer_list', json_encode($cList));
+            $flag = M('fishtank')->where('id='.$param['tank_id'])->setField('thermometer_list', json_encode($cList));
         }
         else if($deviceType == C('DEVICE_TYPE_SOCKET')) {
             $flag = $dao->setField('socket', $nId);
@@ -523,6 +521,40 @@ class FishController extends BaseController {
         $ret['deviceId'] = $id;
 
         echo (wrapResult('CM0000', $ret));
+    }
+
+    function setLightInfo() {
+        $condition['id'] = I('post.deviceId');
+        $data['r_value'] = I('post.rValue');
+        $data['g_value'] = I('post.gValue');
+        $data['b_value'] = I('post.bValue');
+        $data['w_value'] = I('post.wValue');
+        $data['x_value'] = I('post.xValue');
+
+        $curValue = I('post.curValue');
+        if($curValue) {
+            $data['cur_value'] = $curValue;
+        }
+        $name = I('post.name');
+        if($name) {
+            $data['name'] = $name;
+        }
+        $disOrder = I('post.disOrder');
+        if($disOrder) {
+            $data['dis_order'] = $disOrder;
+        }
+
+        $dao = M('light')->where($condition);
+        if(!$dao) {
+            exit (wrapResult('FH0003'));
+        }
+
+        $flag = $dao->save($data);
+        if(!$flag) {
+            exit (wrapResult('CM0002'));
+        }
+
+        echo (wrapResult('CM0000'));
     }
 
     

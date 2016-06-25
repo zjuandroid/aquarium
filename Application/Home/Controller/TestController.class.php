@@ -331,6 +331,23 @@ class TestController extends Controller{
         print_r($res);
     }
 
+    function setLightInfo() {
+        $url = 'http://localhost/aquarium/index.php/fish/setLightInfo';
+
+        $post_data['deviceId'] = 1;
+
+        $post_data['rValue'] = 1;
+        $post_data['gValue'] = 2;
+        $post_data['bValue'] = 3;
+        $post_data['wValue'] = 4;
+        $post_data['xValue'] = 5;
+
+        $post_data['name'] = 'wangchao';
+
+        $res = request_post($url, $post_data);
+        print_r($res);
+    }
+
 
     function test() {
 //        $a = '[1,2,4]';

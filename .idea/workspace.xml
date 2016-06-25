@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="59c9d7cb-7e9d-43a8-ba0a-c89bd9106ca5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Conf/config.php" afterPath="$PROJECT_DIR$/Application/Home/Conf/config.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/FishController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/FishController.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/TestController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/TestController.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Runtime/~crons.php" afterPath="$PROJECT_DIR$/Application/Runtime/~crons.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DB/db.sql" afterPath="$PROJECT_DIR$/DB/db.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hahaha.txt" afterPath="$PROJECT_DIR$/hahaha.txt" />
     </list>
     <ignored path="ThinkAdmin-master.iws" />
@@ -33,7 +31,7 @@
       <file leaf-file-name="BaseController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Home/Controller/BaseController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.46875">
+            <state vertical-scroll-proportion="-6.25">
               <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
               <folding />
             </state>
@@ -43,28 +41,28 @@
       <file leaf-file-name="db.sql" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DB/db.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.75">
+            <state vertical-scroll-proportion="69.82143">
               <caret line="269" column="10" selection-start-line="269" selection-start-column="4" selection-end-line="269" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestController.class.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TestController.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Application/Home/Controller/TestController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.71875">
-              <caret line="325" column="36" selection-start-line="325" selection-start-column="36" selection-end-line="325" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.7306003">
+              <caret line="347" column="22" selection-start-line="347" selection-start-column="22" selection-end-line="347" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FishController.class.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FishController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Home/Controller/FishController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.64831805">
-              <caret line="507" column="47" selection-start-line="507" selection-start-column="47" selection-end-line="507" selection-end-column="47" />
+            <state vertical-scroll-proportion="-11.28125">
+              <caret line="537" column="28" selection-start-line="537" selection-start-column="24" selection-end-line="537" selection-end-column="28" />
               <folding>
                 <element signature="e#33#54#0#PHP" expanded="true" />
               </folding>
@@ -97,7 +95,7 @@
       <file leaf-file-name="config.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Home/Conf/config.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.46875">
+            <state vertical-scroll-proportion="-9.125">
               <caret line="20" column="23" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="23" />
               <folding />
             </state>
@@ -137,8 +135,8 @@
         <option value="$PROJECT_DIR$/Application/Common/Common/function.php" />
         <option value="$PROJECT_DIR$/Application/Home/Conf/config.php" />
         <option value="$PROJECT_DIR$/DB/db.sql" />
-        <option value="$PROJECT_DIR$/Application/Home/Controller/TestController.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/Controller/FishController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Home/Controller/TestController.class.php" />
       </list>
     </option>
   </component>
@@ -183,7 +181,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -446,6 +443,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -513,7 +511,7 @@
     <frame x="-8" y="-8" width="1616" height="876" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24614395" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24935733" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12646675" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -864,14 +862,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/BaseController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.46875">
-          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Common/Common/function.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7646199">
@@ -882,43 +872,51 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/Conf/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.46875">
+        <state vertical-scroll-proportion="-9.125">
           <caret line="20" column="23" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/BaseController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.25">
+          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Think/Model.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34795323">
-          <caret line="834" column="20" selection-start-line="834" selection-start-column="20" selection-end-line="834" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.33235726">
+          <caret line="395" column="20" selection-start-line="395" selection-start-column="20" selection-end-line="395" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DB/db.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.75">
+        <state vertical-scroll-proportion="69.82143">
           <caret line="269" column="10" selection-start-line="269" selection-start-column="4" selection-end-line="269" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/TestController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.71875">
-          <caret line="325" column="36" selection-start-line="325" selection-start-column="36" selection-end-line="325" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/Controller/FishController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.64831805">
-          <caret line="507" column="47" selection-start-line="507" selection-start-column="47" selection-end-line="507" selection-end-column="47" />
+        <state vertical-scroll-proportion="-11.28125">
+          <caret line="537" column="28" selection-start-line="537" selection-start-column="24" selection-end-line="537" selection-end-column="28" />
           <folding>
             <element signature="e#33#54#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/TestController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7306003">
+          <caret line="347" column="22" selection-start-line="347" selection-start-column="22" selection-end-line="347" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
