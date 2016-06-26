@@ -348,6 +348,20 @@ class TestController extends Controller{
         print_r($res);
     }
 
+    function setTempInfo() {
+        $url = 'http://localhost/aquarium/index.php/fish/setTempInfo';
+
+        $post_data['deviceId'] = 1;
+
+        $post_data['minTemp'] = 10;
+        $post_data['maxTemp'] = 20;
+
+        $post_data['name'] = 'wangchao';
+
+        $res = request_post($url, $post_data);
+        print_r($res);
+    }
+
 
     function test() {
 //        $a = '[1,2,4]';

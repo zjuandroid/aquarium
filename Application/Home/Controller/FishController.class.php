@@ -360,6 +360,7 @@ class FishController extends BaseController {
         $ret['name'] = $dao->getField('name');
         $ret['usage_month'] = $dao->getField('usage_month');
         $ret['usage_total'] = $dao->getField('usage_total');
+        $ret['status'] = $dao->getField('status');
 
         $str = $dao->getField('port_list');
         $str = changeBracket($str);
@@ -557,6 +558,36 @@ class FishController extends BaseController {
         echo (wrapResult('CM0000'));
     }
 
+    function setTempInfo() {
+        $condition['id'] = I('post.deviceId');
+        $data['min_temp'] = I('post.minTemp');
+        $data['max_temp'] = I('post.maxTemp');
+
+        $curTemp = I('post.curTemp');
+        if($curTemp) {
+            $data['cur_temp'] = $curTemp;
+        }
+        $name = I('post.name');
+        if($name) {
+            $data['name'] = $name;
+        }
+        $disOrder = I('post.disOrder');
+        if($disOrder) {
+            $data['dis_order'] = $disOrder;
+        }
+
+        $dao = M('thermometer')->where($condition);
+        if(!$dao) {
+            exit (wrapResult('FH0003'));
+        }
+
+        $flag = $dao->save($data);
+        if(!$flag) {
+            exit (wrapResult('CM0002'));
+        }
+
+        echo (wrapResult('CM0000'));
+    }
     
 
 }
