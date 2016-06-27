@@ -362,6 +362,45 @@ class TestController extends Controller{
         print_r($res);
     }
 
+    function setSocketInfo() {
+        $url = 'http://localhost/aquarium/index.php/fish/setSocketInfo';
+
+        $post_data['deviceId'] = 1;
+
+        $post_data['status'] = 0;
+        $post_data['monthUsage'] = 200;
+
+        $res = request_post($url, $post_data);
+        print_r($res);
+    }
+
+    function setSocketPortInfo() {
+        $url = 'http://localhost/aquarium/index.php/fish/setSocketPortInfo';
+
+        $post_data['socketPortId'] = 1;
+
+        $post_data['status'] = 0;
+        $post_data['timerList'] = '[]';
+
+        $res = request_post($url, $post_data);
+        print_r($res);
+    }
+
+    function addTimer() {
+        $url = 'http://localhost/aquarium/index.php/fish/addTimer';
+
+        $post_data['ownerType'] = 'socketPort';
+        $post_data['ownerId'] = 1;
+        $post_data['timerName'] = 'hhh';
+        $post_data['timerStatus'] = 1;
+        $post_data['startTime'] = '09:00';
+        $post_data['endTime'] = '10:00';
+        $post_data['dayList'] = '[1,2]';
+
+        $res = request_post($url, $post_data);
+        print_r($res);
+    }
+
 
     function test() {
 //        $a = '[1,2,4]';

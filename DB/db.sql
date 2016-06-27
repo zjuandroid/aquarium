@@ -459,14 +459,16 @@ w_value tinyint,
 x_value tinyint,
 name VARCHAR(20),
 dis_order tinyint,
+timer_list VARCHAR (100),
+timer_list_name VARCHAR (20),
 tank_id int(11)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO light(cur_value,r_value,g_value,b_value,w_value,x_value,name,dis_order,tank_id)
+INSERT INTO light(cur_value,r_value,g_value,b_value,w_value,x_value,name,dis_order,tank_id,timer_list,timer_list_name)
 VALUES
-(6500,50,60,70,80,90,'灯1',1,1),
-(6600,30,65,70,80,90,'灯2',2,1),
-(4600,30,65,70,80,50,'灯3',3,1);
+(6500,50,60,70,80,90,'灯1',1,1, '[1,2]','灯光定时'),
+(6600,30,65,70,80,90,'灯2',2,1,'',''),
+(4600,30,65,70,80,50,'灯3',3,1,'','');
 
 
 DROP TABLE IF EXISTS timer;
@@ -476,16 +478,16 @@ name VARCHAR (20),
 status tinyint(1) DEFAULT 0 COMMENT '0:关闭,1:打开',
 day_list VARCHAR (100) COMMENT '[1,2,3,4,5,6,7]',
 start_time varchar(10),
-end_time VARCHAR (10),
-#只有插座可以定时?
+end_time VARCHAR (10)
+#只有插座可以定时?灯也可以
 #type tinyint COMMENT '1:插座,2:灯光'
-socket_port int(11)
+#socket_port int(11)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO timer(name,day_list,start_time,end_time,socket_port,status)
+INSERT INTO timer(name,day_list,start_time,end_time,status)
 VALUES
-('灯1插座','[1,2,3]', '8:00','9:00',1,1),
-('灯2插座','[1,2,3,4]', '8:00','9:00',1,1);
+('灯1插座','[1,2,3]', '8:00','9:00',1),
+('灯2插座','[1,2,3,4]', '8:00','9:00',1);
 
 
 DROP TABLE IF EXISTS thermometer_his;

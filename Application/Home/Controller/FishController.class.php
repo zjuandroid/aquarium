@@ -403,7 +403,7 @@ class FishController extends BaseController {
         echo wrapResult('CM0000', $ret);
     }
 
-    function getLightInfo() {
+    function getLightInfo1() {
         $lightId = I('post.lightId');
 
         $data = M('light')->field('tank_id', true)->where('id = '.$lightId)->select();
@@ -413,6 +413,21 @@ class FishController extends BaseController {
         }
 
         echo (wrapResult('CM0000', $data[0]));
+    }
+
+    function getLightInfo() {
+        $lightId = I('post.lightId');
+
+        $data = M('light')->field('tank_id', true)->where('id = '.$lightId)->select();
+
+        if(!$data) {
+            exit(wrapResult('FH0003'));
+        }
+        $data = $data[0];
+        $str = $data['timer_list'];
+        $data['timer_list'] = json_decode($str);
+
+        echo (wrapResult('CM0000', $data));
     }
 
     function addDevice() {
@@ -545,6 +560,16 @@ class FishController extends BaseController {
             $data['dis_order'] = $disOrder;
         }
 
+        $timerList = I('post.timerList');
+        if($timerList) {
+            $data['timer_list'] = $timerList;
+        }
+
+        $timerListName = I('post.timerListName');
+        if($timerListName) {
+            $data['timer_list_name'] = $timerListName;
+        }
+
         $dao = M('light')->where($condition);
         if(!$dao) {
             exit (wrapResult('FH0003'));
@@ -588,6 +613,122 @@ class FishController extends BaseController {
 
         echo (wrapResult('CM0000'));
     }
-    
+
+    function setSocketInfo() {
+        $condition['id'] = I('post.deviceId');
+        $data['status'] = I('post.status');
+
+        $name = I('post.name');
+        if($name) {
+            $data['name'] = $name;
+        }
+        $monthUsage = I('post.monthUsage');
+        if($monthUsage) {
+            $data['usage_month'] = $monthUsage;
+        }
+        $totalUsage = I('post.totalUsage');
+        if($totalUsage) {
+            $data['usage_total'] = $totalUsage;
+        }
+
+        $dao = M('socket')->where($condition);
+        if(!$dao) {
+            exit (wrapResult('FH0003'));
+        }
+
+        $flag = $dao->save($data);
+        if(!$flag) {
+            exit (wrapResult('CM0002'));
+        }
+
+        echo (wrapResult('CM0000'));
+    }
+
+    function setSocketPortInfo() {
+        $condition['id'] = I('post.socketPortId');
+        $data['status'] = I('post.status');
+
+        $name = I('post.portName');
+        if($name) {
+            $data['name'] = $name;
+        }
+
+        $order = I('post.disOrder');
+        if($order) {
+            $data['dis_order'] = $order;
+        }
+
+        $deviceId = I('post.connectedDeviceId');
+        if($deviceId) {
+            $data['deviceId'] = $deviceId;
+        }
+
+        $deviceType = I('post.connectedDeviceType');
+        if($deviceType) {
+            $data['deviceType'] = $deviceType;
+        }
+
+        $timerList = I('post.timerList');
+        if($timerList) {
+            $data['timer_list'] = $timerList;
+        }
+
+        $timerListName = I('post.timerListName');
+        if($timerListName) {
+            $data['timer_list_name'] = $timerListName;
+        }
+
+        $dao = M('socket_port')->where($condition);
+        if(!$dao) {
+            exit (wrapResult('FH0003'));
+        }
+
+        $flag = $dao->save($data);
+        if(!$flag) {
+            exit (wrapResult('CM0002'));
+        }
+
+        echo (wrapResult('CM0000'));
+    }
+
+    function addTimer() {
+        $ownerType = I('post.ownerType');
+        $condition['id'] = I('post.ownerId');
+
+        $data['name'] = I('post.timerName');
+        $data['status'] = I('post.timerStatus');
+        $data['start_time'] = I('post.startTime');
+        $data['end_time'] = I('post.endTime');
+        $data['day_list'] = I('post.dayList');
+
+        $timerId = M('timer')->add($data);
+        if(!$timerId) {
+            exit (wrapResult('CM0002'));
+        }
+
+        if($ownerType == 'socketPort') {
+            $dao = M('socket_port');
+        }
+        else if($ownerType == 'light') {
+            $dao = M('light');
+        }
+        if(!$dao->where($condition)) {
+            exit (wrapResult('FH0003'));
+        }
+        $str = $dao->where($condition)->getField('timer_list');
+        if(!$str) {
+            $str = '[]';
+        }
+        $list = json_decode($str);
+        $list[] = (int)$timerId;
+
+        $flag = $dao->where($condition)->setField('timer_list', json_encode($list));
+        if(!$flag) {
+            exit (wrapResult('CM0002'));
+        }
+
+        $ret['timerId'] = $timerId;
+        echo (wrapResult('CM0000', $ret));
+    }
 
 }
