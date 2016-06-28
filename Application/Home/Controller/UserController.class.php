@@ -40,7 +40,7 @@ class UserController extends BaseController {
             $map['update_at'] = date('Y-m-d H:i:s');
             $flag = M('member')->where('id = '.$userid)->setField($map);
 
-            if($flag) {
+            if($flag !== false) {
                 $ret['avatar'] = substr(C('AVATAR_ROOT_PATH'),1).C('AVATAR_SAVE_PATH').$map['avatar'];
                 echo(wrapResult('LG0000', $ret));
             }
@@ -65,7 +65,7 @@ class UserController extends BaseController {
 
         $flag = M('member')->where('id='.$userid)->save($map);
 
-        if($flag) {
+        if($flag !== false) {
             echo(wrapResult('CM0000'));
         }
         else {
@@ -96,7 +96,7 @@ class UserController extends BaseController {
 
         $flag = M('member')->where($condition)->save($map);
 
-        if($flag) {
+        if($flag !== false) {
             echo(wrapResult('CM0000'));
         }
         else {
@@ -203,8 +203,8 @@ class UserController extends BaseController {
             // 有反馈
 //            $flag = M('feedback')->where($condition)->setField('isread', '1');
             $flag = M('feedback')->where($condition)->save($update);
-            dump($flag);
-            if(!$flag) {
+
+            if($flag === false) {
                 exit (wrapResult('CM0002'));
             }
             else {
@@ -236,7 +236,7 @@ class UserController extends BaseController {
             // 有消息
             $flag = M('message')->where($condition)->save($update);
 
-            if(!$flag) {
+            if($flag === false) {
                 exit (wrapResult('CM0002'));
             }
             else {

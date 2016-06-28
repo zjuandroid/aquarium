@@ -4,12 +4,12 @@
     
     <div class="row">
         <div class="col-md-6" >
-            <a href="{:U('category/add')}" class="btn btn-success">添加分类</a>
+            <legend>用户意见列表</legend>
         </div>
         <div class="col-md-6">
             <form action="{:U('category/index')}" method="post">
                 <div class="form-group input-group">
-                    <input type="text" class="form-control" name="key" placeholder="输入分类标题或者别名关键词搜索">
+                    <input type="text" class="form-control" name="key" placeholder="输入用户电话或者意见内容关键词搜索">
                     <span class="input-group-btn">
                       <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
                     </span>
@@ -21,7 +21,7 @@
         <thead>
             <tr>
                 <th class="col-md-2">编号</th>
-                <th class="col-md-2">用户ID</th>
+                <th class="col-md-2">用户手机</th>
                 <th class="col-md-6">内容</th>
                 <th class="col-md-2">操作</th>
             </tr>
@@ -30,7 +30,7 @@
         <foreach name="model" item="v">
             <tr>
                 <td class="col-md-2">{$v.id}</td>
-                <td class="col-md-2">{$v.userid}</td>
+                <td class="col-md-2">{$v.username}</td>
                 <td class="col-md-6">{$v.content}</td>
 
                 <td class="col-md-2"><a href="{:U('category/answer?id=')}{$v.id}">回复</a> | <a href="{:U('category/delete?id=')}{$v.id}" style="color:red;" onclick="javascript:return del('您真的确定要删除吗？\n\n删除后将不能恢复!');">删除</a></td>

@@ -93,7 +93,7 @@ class LoginController extends Controller{
                 $map['password'] = $password;
                 $map['update_at'] = date('Y-m-d H:i:s');
                 $flag = M('member')->where('username = '.$map['username'])->setField($map);
-                if($flag) {
+                if($flag !== false) {
                     echo(wrapResult('CM0000'));
                 }
                 else {

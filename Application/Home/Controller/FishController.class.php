@@ -79,7 +79,7 @@ class FishController extends BaseController {
 
         $flag = M('fishtank')->where($condition)->save($data);
 
-        if(!$flag) {
+        if($flag === false) {
             exit (wrapResult('CM0002'));
         }
 
@@ -576,7 +576,7 @@ class FishController extends BaseController {
         }
 
         $flag = $dao->save($data);
-        if(!$flag) {
+        if($flag === false) {
             exit (wrapResult('CM0002'));
         }
 
@@ -607,7 +607,7 @@ class FishController extends BaseController {
         }
 
         $flag = $dao->save($data);
-        if(!$flag) {
+        if($flag === false) {
             exit (wrapResult('CM0002'));
         }
 
@@ -637,7 +637,7 @@ class FishController extends BaseController {
         }
 
         $flag = $dao->save($data);
-        if(!$flag) {
+        if($flag === false) {
             exit (wrapResult('CM0002'));
         }
 
@@ -684,7 +684,7 @@ class FishController extends BaseController {
         }
 
         $flag = $dao->save($data);
-        if(!$flag) {
+        if($flag === false) {
             exit (wrapResult('CM0002'));
         }
 
@@ -729,6 +729,25 @@ class FishController extends BaseController {
 
         $ret['timerId'] = $timerId;
         echo (wrapResult('CM0000', $ret));
+    }
+
+    function setTimer()
+    {
+        $condition['id'] = I('post.timerId');
+
+        $data['name'] = I('post.timerName');
+        $data['status'] = I('post.timerStatus');
+        $data['start_time'] = I('post.startTime');
+        $data['end_time'] = I('post.endTime');
+        $data['day_list'] = I('post.dayList');
+
+        $dao = M('timer');
+        $flag =  $dao->where($condition)->save($data);
+        if($flag === false) {
+            exit (wrapResult('CM0002'));
+        }
+
+        echo (wrapResult('CM0000'));
     }
 
 }

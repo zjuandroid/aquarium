@@ -259,7 +259,7 @@ msg varchar(40) NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO errcode (code, msg)
-VALUES 
+VALUES
 	('LG0000','操作成功'),
 	('LG0001','用户名或密码错误'),
 	('LG0002','验证码检验失败'),
@@ -317,6 +317,25 @@ INSERT INTO feedback (userid, answer, answer_time,feedback_time, answerd, conten
 VALUES
 ('1','haha','1466418002','1466418001', '0', 'hhaaa'),
 ('3','haha','1466418003','1466418002', '0', 'hahaha'),
+('3','haha','1466418003','1466418002', '0', 'hahaha'),
+('3','haha','1466418003','1466418002', '0', 'hahaha'),
+('3','haha','1466418003','1466418002', '0', 'hahaha'),
+('3','haha','1466418003','1466418002', '0', 'hahaha'),
+('3','haha','1466418003','1466418002', '0', 'hahaha'),
+('3','haha','1466418003','1466418002', '0', 'hahaha'),
+('3','haha','1466418003','1466418002', '0', 'hahaha'),
+('3','haha','1466418003','1466418002', '0', 'hahaha'),
+('3','haha','1466418003','1466418002', '0', 'hahaha'),
+('3','haha','1466418003','1466418002', '0', 'hahaha'),
+('3','haha','1466418003','1466418002', '0', 'hahaha'),
+('3','haha','1466418003','1466418002', '0', 'hahaha'),
+('3','haha','1466418003','1466418002', '0', 'hahaha'),
+('3','haha','1466418003','1466418002', '0', 'hahaha'),
+('3','haha','1466418003','1466418002', '0', 'hahaha'),
+('3','haha','1466418003','1466418002', '0', 'hahaha'),
+('3','haha','1466418003','1466418002', '0', 'hahaha'),
+('3','haha','1466418003','1466418002', '0', 'hahaha'),
+('3','haha','1466418003','1466418002', '0', 'hahaha'),
 ('1','haha','1466418004','1466418003', '0', 'hhahahahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh');
 
 DROP TABLE IF EXISTS message;
@@ -351,13 +370,26 @@ userid int(11)
 
 INSERT INTO fishkind (name)
 VALUES
+('锦鲤'),
+('草金鱼'),
+('清道夫'),
+('血鹦鹉'),
+('地图鱼'),
+('招财鱼'),
 ('金龙鱼'),
-('血鹦鹉鱼'),
-('孔雀鱼'),
-('斑马鱼'),
-('金鱼'),
+('银龙鱼'),
 ('罗汉鱼'),
-('虹鱼');
+('慈鲷鱼'),
+('红绿灯'),
+('宝莲灯'),
+('七彩鱼'),
+('神仙鱼'),
+('彩裙鱼'),
+('斑马鱼'),
+('金苔鼠'),
+('玛丽鱼'),
+('曼龙鱼'),
+('异形鱼');
 
 DROP TABLE IF EXISTS fishtank;
 CREATE TABLE fishtank (

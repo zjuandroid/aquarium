@@ -401,6 +401,21 @@ class TestController extends Controller{
         print_r($res);
     }
 
+    function setTimer() {
+        $url = 'http://localhost/aquarium/index.php/fish/setTimer';
+
+        $post_data['userid'] = 1;
+        $post_data['timerId'] = 1;
+        $post_data['timerName'] = 'hhh';
+        $post_data['timerStatus'] = 1;
+        $post_data['startTime'] = '09:00';
+        $post_data['endTime'] = '10:00';
+        $post_data['dayList'] = '[1,2]';
+
+        $res = request_post($url, $post_data);
+        print_r($res);
+    }
+
 
     function test() {
 //        $a = '[1,2,4]';

@@ -7,13 +7,17 @@ use Think\Controller;
  * 请继承该控制器
  */
 class BaseController extends Controller {
-    public function _initialize(){
+    public function _initialize1(){
         if(!IS_POST){
             exit(wrapResult('CM0001'));
         }
 
         $userid = I('post.userid');
         $token = I('post.token');
+
+        if($userid || $token) {
+            exit(wrapResult('CM0003'));
+        }
 
         if($token != S($userid)) {
             exit(wrapResult('CM0003'));
