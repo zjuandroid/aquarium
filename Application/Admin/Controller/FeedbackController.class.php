@@ -4,7 +4,7 @@ use Admin\Controller;
 /**
  * 分类管理
  */
-class CategoryController extends BaseController
+class FeedbackController extends BaseController
 {
     /**
      * 分类列表
@@ -52,9 +52,11 @@ class CategoryController extends BaseController
             $model = M('feedback');
             $where['answerd'] = 0;
         }else{
-            $where['username'] = array('like',"%$key%");
-            $where['content'] = array('like',"%$key%");
-            $where['_logic'] = 'or';
+//            $where['username'] = array('like',"%$key%");
+//            $where['content'] = array('like',"%$key%");
+//            $where['_logic'] = 'or';
+            $where = 'answerd = 0 and (username like "%'.$key.'%" or content like "%'.$key.'%")';
+//            dump($where);
 //            $model = M()->field('t1.username, t2.id, t2.userid, t2.content')->table('member as t1')->join('feedback as t2 on t1.id=t2.userid');
             $member = M('member');
             $model = $member->join('feedback ON member.id = feedback.userid');
