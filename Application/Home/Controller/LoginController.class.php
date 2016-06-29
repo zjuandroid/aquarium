@@ -30,8 +30,11 @@ class LoginController extends Controller{
 
             $member = M('member')->where($data)->find();
             if($member){
-//                session('userid',$member['id']);
-//                session('username',$member['username']);
+                $status = M('member')->where($data)->getField('status');
+                if($status == 0) {
+                    exit (wrapResult('LG0005'));
+                }
+
                 $ret['token'] =  $this->createNonceStr(32);
                 $ret['userid'] = $member['id'];
                 S($member['id'], $ret['token']);

@@ -7,7 +7,7 @@
         <div class="col-md-6">
             <form action="{:U('member/index')}" method="post">
                 <div class="form-group input-group">
-                    <input type="text" class="form-control" name="key" placeholder="输入用户名或者邮箱关键词搜索">
+                    <input type="text" class="form-control" name="key" placeholder="输入用户名搜索">
                     <span class="input-group-btn">
                       <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
                     </span>
@@ -22,10 +22,8 @@
             <tr>
                 <td>编号</td>
                 <td>用户名</td>
-                <td>邮箱</td>
                 <td>注册时间</td>
-                <td>上次登陆</td>
-                <td>登陆IP</td>
+                <td>更新时间</td>
                 <td>类型</td>
                 <td>状态</td>
                 <td>操作</td>
@@ -36,10 +34,8 @@
             <tr>
                 <td>{$v.id}</td>
                 <td>{$v.username}</td>
-                <td>{$v.email}</td>
                 <td>{$v.create_at|date="Y/m/d H:i:s",###}</td>
                 <td>{$v.update_at|date="Y/m/d H:i:s",###}</td>
-                <td>{$v.login_ip}</td>
                 <td>
                     <if condition="$v.type eq 1"> <span class="label label-success">会员</span>
                     <elseif condition="$v.type eq 2"/><span class="label label-danger">管理员</span>
@@ -55,6 +51,7 @@
         </foreach>
         </tbody>
     </table>
+    {$page}
 </div>
 
 <include file="Public/footer" />

@@ -7,7 +7,7 @@ use Think\Controller;
  * 请继承该控制器
  */
 class BaseController extends Controller {
-    public function _initialize1(){
+    public function _initialize(){
         if(!IS_POST){
             exit(wrapResult('CM0001'));
         }
@@ -22,8 +22,11 @@ class BaseController extends Controller {
         if($token != S($userid)) {
             exit(wrapResult('CM0003'));
         }
+
+        $status = M('member')->where('id='.$userid)->getField('status');
+        if($status == 0) {
+            exit (wrapResult('LG0005'));
+        }
     }
-
-
 
 }

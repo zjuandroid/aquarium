@@ -16,15 +16,15 @@ class MemberController extends BaseController
             $model = M('member');  
         }else{
             $where['username'] = array('like',"%$key%");
-            $where['email'] = array('like',"%$key%");
-            $where['_logic'] = 'or';
+//            $where['email'] = array('like',"%$key%");
+//            $where['_logic'] = 'or';
             $model = M('member')->where($where); 
         } 
         
         $count  = $model->where($where)->count();// 查询满足要求的总记录数
-        $Page = new \Extend\Page($count,15);// 实例化分页类 传入总记录数和每页显示的记录数(25)
-        $show = $Page->show();// 分页显示输出
-        $member = $model->limit($Page->firstRow.','.$Page->listRows)->where($where)->order('id DESC')->select();
+        $page = new \Extend\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数(25)
+        $show = $page->show();// 分页显示输出
+        $member = $model->limit($page->firstRow.','.$page->listRows)->where($where)->order('id DESC')->select();
         $this->assign('member', $member);
         $this->assign('page',$show);
         $this->display();     
@@ -43,10 +43,12 @@ class MemberController extends BaseController
             //如果用户提交数据
             $model = D("Member");
             if (!$model->create()) {
+                echo '111111111';
                 // 如果创建失败 表示验证没有通过 输出错误提示信息
                 $this->error($model->getError());
                 exit();
             } else {
+                echo '22222222222';
                 if ($model->add()) {
                     $this->success("用户添加成功", U('member/index'));
                 } else {
