@@ -123,7 +123,7 @@ LOCK TABLES `member` WRITE;
 
 INSERT INTO `member` (`id`, `username`, `email`, `password`, `avatar`, `create_at`, `update_at`, `login_ip`, `status`, `type`,`nickname`,`good_at`,`gender`,`feed_year`,`area_address`,`district_address`)
 VALUES
-	(1,'18121380371','515343908@qq.com','111111',NULL,'2016-06-11 19:48:45','2016-06-11 19:48:45','0.0.0.0',1,2,'Tom','[1,3,5]','男',8,'杭州市西湖区','文三路33号');
+	(1,'18121380371','515343908@qq.com','111111',NULL,'1467211497','1467211497','0.0.0.0',1,2,'Tom','[1,3,5]','男',8,'杭州市西湖区','文三路33号');
 
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -272,6 +272,7 @@ VALUES
 	('CM0003', '请登录后再操作'),
 	('CM0004', '上传文件失败'),
 	('CM0005', '读取文件失败'),
+	('CM0006', '没有找到用户'),
 	('FH0000', '操作成功'),
 	('FH0001', '已存在此鱼种'),
 	('FH0002', '没有找到鱼缸'),

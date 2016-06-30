@@ -73,8 +73,8 @@ class LoginController extends Controller{
                     return;
                 }
                 $map['password'] = $password;
-                $map['create_at'] = date('Y-m-d H:i:s');
-                $map['update_at'] = date('Y-m-d H:i:s');
+                $map['create_at'] = time();
+                $map['update_at'] = time();
                 $id = M('member')->add($map);
                 if($id) {
                     $ret['token'] =  $this->createNonceStr(32);
@@ -94,7 +94,7 @@ class LoginController extends Controller{
                     return;
                 }
                 $map['password'] = $password;
-                $map['update_at'] = date('Y-m-d H:i:s');
+                $map['update_at'] = time();
                 $flag = M('member')->where('username = '.$map['username'])->setField($map);
                 if($flag !== false) {
                     echo(wrapResult('CM0000'));

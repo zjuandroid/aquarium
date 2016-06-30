@@ -98,7 +98,10 @@ class TestController extends Controller{
 
     function setUserInfo()
     {
-        $url = 'http://localhost/aquarium/index.php/user/setUserInfo';
+//        $url = 'http://localhost/aquarium/index.php/user/setUserInfo';
+
+        $url = 'http://120.27.216.57/user/setUserInfo';
+
         $post_data['userid'] = '1';
         $post_data['token']    = 'z4lqdcqzkufk0n0i3bqrkk80gbwcd5un';
         $post_data['nickName'] = 'haha';
@@ -113,8 +116,10 @@ class TestController extends Controller{
     }
 
     function getUserInfo() {
-        $url = 'http://localhost/aquarium/index.php/user/getUserInfo';
-        $post_data['userid'] = '1';
+//        $url = 'http://localhost/aquarium/index.php/user/getUserInfo';
+        $url = 'http://120.27.216.57/user/getUserInfo';
+
+        $post_data['userid'] = '2';
 
         $res = request_post($url, $post_data);
         print_r($res);

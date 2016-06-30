@@ -37,7 +37,7 @@ class UserController extends BaseController {
             exit( wrapResult('CM0004'));
         }else{// 上传成功
             $map['avatar'] = $info['pic']['savename'];
-            $map['update_at'] = date('Y-m-d H:i:s');
+            $map['update_at'] = time();
             $flag = M('member')->where('id = '.$userid)->setField($map);
 
             if($flag !== false) {
@@ -61,7 +61,7 @@ class UserController extends BaseController {
         if($cache != $newSmsCode) {
             exit ( wrapResult('LG0002'));
         }
-        $map['update_at'] = date('Y-m-d H:i:s');
+        $map['update_at'] = time();
 
         $flag = M('member')->where('id='.$userid)->save($map);
 
@@ -92,7 +92,7 @@ class UserController extends BaseController {
 
         $map['area_address'] = I('post.areaDesc');
         $map['district_address'] = I('post.district');
-        $map['update_at'] = date('Y-m-d H:i:s');
+        $map['update_at'] = time();
 
         $flag = M('member')->where($condition)->save($map);
 
@@ -129,30 +129,57 @@ class UserController extends BaseController {
         echo (wrapResult('CM0000', $result));
     }
 
-    function getUserInfo() {
+    function getUserInfo2() {
         $condition['id'] = I('post.userid');
-        $dao = M('member')->where($condition);
-        $result['nickName'] = $dao->getField('nickname');
-        $path = $dao->getField('avatar');
+        $dao = M('member');
+        $result['nickName'] = $dao->where($condition)->getField('nickname');
+        $path = $dao->where($condition)->getField('avatar');
+
         if($path) {
             $result['avatar'] = substr(C('AVATAR_ROOT_PATH'), 1).C('AVATAR_SAVE_PATH').$path;
         }
         else {
             $result['avatar'] = '';
         }
-//        $result['fishType'] = $dao->getField('good_at');
-        $str = $dao->getField('good_at');
+
+        $str = $dao->where($condition)->getField('good_at');
         $str = str_replace(array('[', ']'), array('(', ')'), $str);
         $result['fishType'] = M('fishkind')->field('id, name')->where('id in '.$str)->select();
-        $result['gender'] = $dao->getField('gender');
-        $result['feedYears'] = $dao->getField('feed_year');
-        $result['areaDesc'] = $dao->getField('area_address');
-        $result['district'] = $dao->getField('district_address');
-        $result['phone'] = $dao->getField('username');
+        $result['gender'] = $dao->where($condition)->getField('gender');
+        $result['feedYears'] = $dao->where($condition)->getField('feed_year');
+        $result['areaDesc'] = $dao->where($condition)->getField('area_address');
+        $result['district'] = $dao->where($condition)->getField('district_address');
+        $result['phone'] = $dao->where($condition)->getField('username');
 
-//        $ret['code'] = 'CM0000';
-//        $ret['message'] = M('errcode')->where($ret)->getField('msg');
-//        $ret['data'] = $result;
+        echo (wrapResult('CM0000', $result));
+    }
+
+    function getUserInfo() {
+        $condition['id'] = I('post.userid');
+
+        $data = M('member')->field('nickname,avatar,good_at,gender,feed_year,area_address,district_address,username')->where($condition)->select();
+        if(!$data) {
+            exit (wrapResult('CM0006'));
+        }
+        $data = $data[0];
+
+        $result['nickName'] = $data['nickname'];
+        $path = $data['avatar'];
+        $result['avatar'] = $path ? substr(C('AVATAR_ROOT_PATH'), 1).C('AVATAR_SAVE_PATH').$path : '';
+
+        $str = $data['good_at'];
+        if($str) {
+            $str = str_replace(array('[', ']'), array('(', ')'), $str);
+            $result['fishType'] = M('fishkind')->field('id, name')->where('id in ' . $str)->select();
+        }
+        else {
+            $result['fishType'] = null;
+        }
+        $result['gender'] = $data['gender'];
+        $result['feedYears'] = $data['feed_year'];
+        $result['areaDesc'] = $data['area_address'];
+        $result['district'] = $data['district_address'];
+        $result['phone'] = $data['username'];
 
         echo (wrapResult('CM0000', $result));
     }
