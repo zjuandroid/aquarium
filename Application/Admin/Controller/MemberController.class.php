@@ -120,4 +120,8 @@ class MemberController extends BaseController
             $this->error("状态更新失败");
         }
     }
+
+    function detail($id) {
+        $this->display();
+    }
 }

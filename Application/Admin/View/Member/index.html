@@ -33,7 +33,8 @@
         <foreach name="member" item="v">
             <tr>
                 <td>{$v.id}</td>
-                <td>{$v.username}</td>
+                <!--<td>{$v.username}</td>-->
+                <td><a href="{:U('member/detail?id=')}{$v.id}">{$v.username}</a></td>
                 <td>{$v.create_at|date="Y/m/d H:i:s",###}</td>
                 <td>{$v.update_at|date="Y/m/d H:i:s",###}</td>
                 <td>
