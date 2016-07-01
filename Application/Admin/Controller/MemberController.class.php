@@ -128,13 +128,7 @@ class MemberController extends BaseController
         for($i = 0; $i < count($tankList); $i++) {
             $str = $tankList[$i]['fishkinds'];
             if($str) {
-                $str = changeBracket($str);
-                $fishList = M('fishkind')->field('name')->where('id in '.$str)->select();
-                $str = '';
-                foreach($fishList as $fish) {
-                    $str .= $fish['name'].',';
-                }
-                $tankList[$i]['fishkinds'] = substr($str, 0, -1);
+                $tankList[$i]['fishkinds'] = getFishNameStr($str);
             }
 
             $str = $tankList[$i]['thermometer_list'];
@@ -154,8 +148,18 @@ class MemberController extends BaseController
 
         }
 
+        if($user) {
+            $user = $user[0];
+        }
+        if($user['good_at']) {
+            $user['good_at'] = getFishNameStr($user['good_at']);
+        }
+        $user['avatar'] = $user['avatar'] ? substr(C('AVATAR_ROOT_PATH'), 1).C('AVATAR_SAVE_PATH').$user['avatar'] : '';
+
         $this->assign('user', $user);
         $this->assign('tankList',$tankList);
         $this->display();
     }
+
+
 }

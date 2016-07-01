@@ -30,3 +30,13 @@ function sendMessage($data) {
         print("Caught exception: " . $e->getMessage());
     }
 }
+
+function getFishNameStr($str) {
+    $str = changeBracket($str);
+    $fishList = M('fishkind')->field('name')->where('id in '.$str)->select();
+    $str = '';
+    foreach($fishList as $fish) {
+        $str .= $fish['name'].',';
+    }
+    return substr($str, 0, -1);
+}

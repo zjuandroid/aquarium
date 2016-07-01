@@ -1,25 +1,25 @@
 <include file="Public/header" title="用户详细信息" />
 <div id="page-wrapper">
     <div class="row">
-        <div class="col-md-9">
-            <legend vertical-align="middle">昵称：{$user.nickname}</legend>
-            <legend vertical-align="middle">性别：</legend>
-            <legend vertical-align="middle">所在地区：</legend>
-            <legend vertical-align="middle">街道地址：</legend>
-            <legend vertical-align="middle">养鱼经验：</legend>
+        <div class="col-sm-8 col-md-9">
+            <legendList vertical-align="middle">昵称：{$user.nickname}</legendList>
+            <legendList vertical-align="middle">性别：{$user.gender}</legendList>
+            <legendList vertical-align="middle">所在地区：{$user.area_address}</legendList>
+            <legendList vertical-align="middle">街道地址：{$user.district_address}</legendList>
+            <legendList vertical-align="middle">养鱼经验：{$user.feed_year}年</legendList>
         </div>
         <!--<div class="col-md-6">-->
             <!--<img src=__ROOT__/Uploads/Avatar/57610b640b1d5.jpg width=50 height=60 vertical-align="middle">-->
         <!--</div>-->
-        <div class="col-sm-6 col-md-3">
+        <div class="col-sm-4 col-md-3">
             <a href="#" class="thumbnail">
-                <img src=__ROOT__/Uploads/Avatar/57610b640b1d5.jpg
-                     alt="用户没有设置头像">
+                <!--<img src=__ROOT__/Uploads/Avatar/57610b640b1d5.jpg alt="用户没有设置头像">-->
+                <img src=__ROOT__{$user.avatar} alt="用户没有设置头像">
             </a>
         </div>
     </div>
     <div>
-        <legend vertical-align="middle">擅长鱼种：</legend>
+        <legendList vertical-align="middle">擅长鱼种：{$user.good_at}</legendList>
     </div>
 
     <table class="fixtable table-hover table-striped table-bordered">
@@ -37,7 +37,7 @@
         <foreach name="tankList" item="v">
             <tr>
                 <td class="col-md-2">{$v.name}</td>
-                <td class="col-md-2">{$v.opendate|date='Y-m-d H:i:s',###}</td>
+                <td class="col-md-2">{$v.opendate|date='Y-m-d',###}</td>
                 <td class="col-md-5">{$v.fishkinds}</td>
                 <td class="col-md-2">{$v.thermometer_list}个</td>
                 <td class="col-md-2">{$v.light_list}个</td>
