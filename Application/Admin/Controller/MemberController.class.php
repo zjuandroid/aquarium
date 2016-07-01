@@ -122,6 +122,40 @@ class MemberController extends BaseController
     }
 
     function detail($id) {
+        $user = M('member')->where('id='.$id)->select();
+        $tankList = M('fishtank')->field('name,opendate,fishkinds,thermometer_list,light_list,socket')->where('userid='.$id)->select();
+
+        for($i = 0; $i < count($tankList); $i++) {
+            $str = $tankList[$i]['fishkinds'];
+            if($str) {
+                $str = changeBracket($str);
+                $fishList = M('fishkind')->field('name')->where('id in '.$str)->select();
+                $str = '';
+                foreach($fishList as $fish) {
+                    $str .= $fish['name'].',';
+                }
+                $tankList[$i]['fishkinds'] = substr($str, 0, -1);
+            }
+
+            $str = $tankList[$i]['thermometer_list'];
+            if($str) {
+                $tankList[$i]['thermometer_list'] = count(json_decode($str));
+            }
+
+            $str = $tankList[$i]['light_list'];
+            if($str) {
+                $tankList[$i]['light_list'] = count(json_decode($str));
+            }
+
+            $str = $tankList[$i]['socket'];
+            if($str) {
+                $tankList[$i]['socket'] = $str ? '1':'0';
+            }
+
+        }
+
+        $this->assign('user', $user);
+        $this->assign('tankList',$tankList);
         $this->display();
     }
 }

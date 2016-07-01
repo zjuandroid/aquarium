@@ -1,40 +1,51 @@
 <include file="Public/header" title="用户详细信息" />
 <div id="page-wrapper">
     <div class="row">
-        <div class="col-md-6">
-            <legend vertical-align="middle">头像</legend>
+        <div class="col-md-9">
+            <legend vertical-align="middle">昵称：{$user.nickname}</legend>
+            <legend vertical-align="middle">性别：</legend>
+            <legend vertical-align="middle">所在地区：</legend>
+            <legend vertical-align="middle">街道地址：</legend>
+            <legend vertical-align="middle">养鱼经验：</legend>
         </div>
-        <div class="col-md-6">
-            <img src=__ROOT__/Uploads/Avatar/57610b640b1d5.jpg width=50 height=60 vertical-align="middle">
+        <!--<div class="col-md-6">-->
+            <!--<img src=__ROOT__/Uploads/Avatar/57610b640b1d5.jpg width=50 height=60 vertical-align="middle">-->
+        <!--</div>-->
+        <div class="col-sm-6 col-md-3">
+            <a href="#" class="thumbnail">
+                <img src=__ROOT__/Uploads/Avatar/57610b640b1d5.jpg
+                     alt="用户没有设置头像">
+            </a>
         </div>
-    </div>
-    <div>
-        <legend vertical-align="middle">昵称：</legend>
-    </div>
-    <div>
-        <legend vertical-align="middle">性别：</legend>
-    </div>
-    <div>
-        <legend vertical-align="middle">所在地区：</legend>
-    </div>
-    <div>
-        <legend vertical-align="middle">街道地址：</legend>
-    </div>
-    <div>
-        <legend vertical-align="middle">养鱼经验：</legend>
     </div>
     <div>
         <legend vertical-align="middle">擅长鱼种：</legend>
     </div>
-    <div>
-        <legend vertical-align="middle">鱼缸：</legend>
-    </div>
-    <div>
-        <legend vertical-align="middle">鱼缸：</legend>
-    </div>
-    <div>
-        <legend vertical-align="middle">鱼缸：</legend>
-    </div>
+
+    <table class="fixtable table-hover table-striped table-bordered">
+        <thead>
+        <tr>
+            <th class="col-md-2">鱼缸名字</th>
+            <th class="col-md-2">开缸时间</th>
+            <th class="col-md-5">在养鱼种</th>
+            <th class="col-md-2">温度计</th>
+            <th class="col-md-2">智能灯</th>
+            <th class="col-md-2">六孔插座</th>
+        </tr>
+        </thead>
+        <tbody>
+        <foreach name="tankList" item="v">
+            <tr>
+                <td class="col-md-2">{$v.name}</td>
+                <td class="col-md-2">{$v.opendate|date='Y-m-d H:i:s',###}</td>
+                <td class="col-md-5">{$v.fishkinds}</td>
+                <td class="col-md-2">{$v.thermometer_list}个</td>
+                <td class="col-md-2">{$v.light_list}个</td>
+                <td class="col-md-2">{$v.socket}个</td>
+            </tr>
+        </foreach>
+        </tbody>
+    </table>
     
 
 
