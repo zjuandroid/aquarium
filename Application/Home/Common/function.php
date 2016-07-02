@@ -136,20 +136,4 @@ function upload_file($url,$filename,$path,$type, $pic, $userid, $token){
 	echo $return_data;
 }
 
-function validateListStr($str) {
-	if(!$str) {
-		return false;
-	}
-
-	if(substr( $str, 0, 1) != '[') {
-		return false;
-	}
-
-	if(substr( $str, -1) != ']') {
-		return false;
-	}
-
-	return true;
-}
-
  ?>

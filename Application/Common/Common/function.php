@@ -55,3 +55,19 @@ function getSettingValueFieldByKey($key,$field)
 function changeBracket($str) {
 	return str_replace(array('[', ']'), array('(',')'), $str);
 }
+
+function validateListStr($str) {
+	if(!$str) {
+		return false;
+	}
+
+	if(substr( $str, 0, 1) != '[') {
+		return false;
+	}
+
+	if(substr( $str, -1) != ']') {
+		return false;
+	}
+
+	return true;
+}

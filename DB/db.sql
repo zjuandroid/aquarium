@@ -395,7 +395,7 @@ temp_mode_auto tinyint(1) DEFAULT 1
 INSERT INTO fishtank (name, length, width, heigth, fishkinds, opendate, userid,thermometer_list,light_list,socket)
 VALUES
 ('大鱼缸','10.5','3', '1','[1,4,5]','1466418002', 1, '[1,2]','[1,2,3]',1),
-('小鱼缸','5','3', '1','[1,4,5]','1466418002',2,'','',1);
+('小鱼缸','5','3', '1','[1,4,5]','1466418002',1,'','',1);
 
 DROP TABLE IF EXISTS thermometer;
 CREATE TABLE thermometer (
