@@ -2,23 +2,31 @@
 <div id="page-wrapper">
     <form method="post" enctype="multipart/form-data" action="{:U('push/add')}">
         <div class="form-group">
+            <label for="3">消息图标</label>
+            <label class="my-font-tip">(允许上传文件格式：jpg, gif, png, jpeg, 最大1M)</label>
+            <input type="file" name="icon" id="3">
+            <!--<a href="javascript:;" class="MyFile">选择文件-->
+                <!--<input type="file" name="" id="">-->
+            <!--</a>-->
+        </div>
+        <div class="form-group">
             <label for="1">消息标题</label>
             <input type="text" name="title" class="form-control" id="1" placeholder="输入消息标题">
         </div>
         <div class="form-group">
             <label for="2">消息内容</label>
-            <!--<input type="text" name="content" class="form-control" id="2" placeholder="输入消息内容">-->
-            <textarea name="content" id="2" cols="30" rows="3" class="form-control" placeholder="输入消息内容"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="4">广告图片链接</label>
-            <input type="text" name="url" class="form-control" id="4" placeholder="广告图片链接地址">
+            <input type="text" name="content" class="form-control" id="2" placeholder="输入消息内容">
         </div>
         <div class="form-group">
             <label for="5">广告图片</label>
             <label class="my-font-tip">(允许上传文件格式：jpg, gif, png, jpeg, 最大1M)</label>
             <input type="file" name="pic" id="5">
         </div>
+        <div class="form-group">
+            <label for="4">广告图片链接</label>
+            <input type="text" name="url" class="form-control" id="4" placeholder="广告图片链接地址">
+        </div>
+
         <div class="form-group col-xs-offset-6">
             <button type="submit" class="btn btn-success">推送</button>
         </div>

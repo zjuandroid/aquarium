@@ -10,42 +10,6 @@ class FeedbackController extends BaseController
      * 分类列表
      * @return [type] [description]
      */
-    public function index1($key="")
-    {
-        if($key === ""){
-            $model = M('feedback');
-            $where['answerd'] = 0;
-        }else{
-            //            $where['title'] = array('like',"%$key%");
-//            $where['name'] = array('like',"%$key%");
-//            $where['_logic'] = 'or';
-//            $model = M('category')->where($where);
-        }
-
-        $count = $model->where($where)->count();
-        $pagecount = 15;
-//        $page = new \Think\Page($count , $pagecount);
-        $page = new \Extend\Page($count , $pagecount);
-        //$page->parameter = $row; //此处的row是数组，为了传递查询条件
-//        $page->setConfig('first','首页');
-//        $page->setConfig('prev','上一页');
-//        $page->setConfig('next','下一页');
-//        $page->setConfig('last','尾页');
-//        $page->setConfig('theme','%FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END% 第 '.I('p',1).' 页/共 %TOTAL_PAGE% 页 ( '.$pagecount.' 条/页 共 %TOTAL_ROW% 条)');
-        $show = $page->show();
-        //$list = $db->where($where)->order('id desc')->limit($page->firstRow.','.$page->listRows)->select();
-        //$this->assign('list',$list);
-        $this->assign('page',$show);
-
-        $feedback = $model->limit($page->firstRow.','.$page->listRows)->where($where)->order('id ASC')->select();
-        $dao = M('member');
-        for($i = 0; $i < count($feedback); $i++) {
-            $feedback[$i]['username'] = $dao->where('id='.$feedback[$i]['userid'])->getField('username');
-        }
-        $this->assign('model',getSortedCategory($feedback));
-        $this->display();   
-    }
-
     public function index($key="")
     {
         if($key === ""){
@@ -63,8 +27,7 @@ class FeedbackController extends BaseController
         }
 
         $count = $model->where($where)->count();
-        $pagecount = 10;
-        $page = new \Extend\Page($count , $pagecount);
+        $page = new \Extend\Page($count, C('PAGE_COUNT'));
         $show = $page->show();
         $this->assign('page',$show);
 
@@ -72,7 +35,7 @@ class FeedbackController extends BaseController
         if($key !== ''){
             $model = $member->join('feedback ON member.id = feedback.userid');
         }
-        $feedback = $model->limit($page->firstRow.','.$page->listRows)->where($where)->order('feedback.id ASC')->select();
+        $feedback = $model->limit($page->firstRow.','.$page->listRows)->where($where)->order('feedback.id DESC')->select();
         $dao = M('member');
         for($i = 0; $i < count($feedback); $i++) {
             $feedback[$i]['username'] = $dao->where('id='.$feedback[$i]['userid'])->getField('username');

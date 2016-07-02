@@ -12,8 +12,8 @@ class LoginController extends Controller {
         if(!IS_POST)$this->error("非法请求");
         $member = M('member');
         $username =I('username','','addslashes');
-//        $password =I('password','','md5');
-        $password = I('password');
+        $password =I('password','','md5');
+//        $password = I('password');
         $code = I('verify','','strtolower');
         //验证验证码是否正确
         if(!($this->check_verify($code))){

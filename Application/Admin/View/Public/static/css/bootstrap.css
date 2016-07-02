@@ -1870,16 +1870,55 @@ legend {
   border-bottom: 1px solid #e5e5e5;
 }
 
-legendList {
+MyLegendList {
   display: block;
   width: 100%;
   padding: 0;
-  margin-bottom: 20px;
-  font-size: 15px;
+  margin-bottom: 10px;
+  font-size: 13px;
   line-height: inherit;
   color: #333333;
   border: 0;
   border-bottom: 1px solid #e5e5e5;
+}
+
+.MyInput {
+  position:absolute;
+  right:0;
+  top:0;
+  font-size:100px;
+  opacity:0;
+  filter:alpha(opacity=0);
+  color: #333;
+  background-color: #333333;
+}
+
+.MyFile {
+  position: relative;
+  display: inline-block;
+  background: #D0EEFF;
+  border: 1px solid #99D3F5;
+  border-radius: 4px;
+  padding: 4px 12px;
+  overflow: hidden;
+  /*color: #1E88C7;*/
+  color: #333333;
+  text-decoration: none;
+  text-indent: 0;
+  line-height: 20px;
+}
+.MyFile input {
+  position: absolute;
+  font-size: 100px;
+  right: 0;
+  top: 0;
+  opacity: 0;
+}
+.MyFile:hover {
+  background: #AADFFD;
+  border-color: #78C3F3;
+  color: #004974;
+  text-decoration: none;
 }
 
 label {
@@ -2467,6 +2506,11 @@ fieldset[disabled] .btn-danger:active,
 fieldset[disabled] .btn-danger.active {
   background-color: #d9534f;
   border-color: #d43f3a;
+}
+
+.my-font-tip {
+  color: grey;
+  font-size:smaller;
 }
 
 .btn-success {
@@ -5293,6 +5337,21 @@ a.list-group-item.active > .badge,
   border-radius: 4px;
   -webkit-transition: all 0.2s ease-in-out;
           transition: all 0.2s ease-in-out;
+}
+
+.thumbnail2 {
+  display: inline-block;
+  display: block;
+  height: auto;
+  max-width: 100%;
+  padding: 4px;
+  margin-bottom: 20px;
+  line-height: 1.428571429;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .thumbnail > img {

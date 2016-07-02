@@ -123,7 +123,7 @@ LOCK TABLES `member` WRITE;
 
 INSERT INTO `member` (`id`, `username`, `email`, `password`, `avatar`, `create_at`, `update_at`, `login_ip`, `status`, `type`,`nickname`,`good_at`,`gender`,`feed_year`,`area_address`,`district_address`)
 VALUES
-	(1,'18121380371','515343908@qq.com','111111',NULL,'1467211497','1467211497','0.0.0.0',1,2,'Tom','[1,3,5]','男',8,'杭州市西湖区','文三路33号');
+	(1,'18121380371','515343908@qq.com','96e79218965eb72c92a549dd5a330112','57610b640b1d5.jpg','1467211497','1467211497','0.0.0.0',1,2,'Tom','[1,3,5]','男',8,'杭州市西湖区','文三路33号');
 
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -318,26 +318,6 @@ isread tinyint(1) DEFAULT 0
 INSERT INTO feedback (userid, answer, answer_time,feedback_time, answerd, content)
 VALUES
 ('1','haha','1466418002','1466418001', '0', 'hhaaa'),
-('3','haha','1466418003','1466418002', '0', 'hahaha'),
-('3','haha','1466418003','1466418002', '0', 'hahaha'),
-('3','haha','1466418003','1466418002', '0', 'hahaha'),
-('3','haha','1466418003','1466418002', '0', 'hahaha'),
-('3','haha','1466418003','1466418002', '0', 'hahaha'),
-('3','haha','1466418003','1466418002', '0', 'hahaha'),
-('3','haha','1466418003','1466418002', '0', 'hahaha'),
-('3','haha','1466418003','1466418002', '0', 'hahaha'),
-('3','haha','1466418003','1466418002', '0', 'hahaha'),
-('3','haha','1466418003','1466418002', '0', 'hahaha'),
-('3','haha','1466418003','1466418002', '0', 'hahaha'),
-('3','haha','1466418003','1466418002', '0', 'hahaha'),
-('3','haha','1466418003','1466418002', '0', 'hahaha'),
-('3','haha','1466418003','1466418002', '0', 'hahaha'),
-('3','haha','1466418003','1466418002', '0', 'hahaha'),
-('3','haha','1466418003','1466418002', '0', 'hahaha'),
-('3','haha','1466418003','1466418002', '0', 'hahaha'),
-('3','haha','1466418003','1466418002', '0', 'hahaha'),
-('3','haha','1466418003','1466418002', '0', 'hahaha'),
-('3','haha','1466418003','1466418002', '0', 'hahaha'),
 ('1','haha','1466418004','1466418003', '0', 'hhahahahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh');
 
 DROP TABLE IF EXISTS message;
@@ -348,19 +328,19 @@ author varchar(20),
 icon varchar(100),
 picture varchar(100),
 title varchar(40),
-creat_time varchar(20),
+create_time varchar(20),
 read_time varchar(20),
 url varchar(100),
 fetched tinyint(1) DEFAULT 0,
-type tinyint(2) DEFAULT 0,
-content varchar(200)
+type tinyint(2) DEFAULT 1 COMMENT '1:新品推荐,2:灯光色温',
+content varchar(400)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO message (userid, fetched, content,icon)
-VALUES
-('1','0','watch', '/Uploads/Push/aa2.jpg'),
-('2','0','fish','/Uploads/Push/aa2.jpg'),
-('1','0','bag','/Uploads/Push/aa2.jpg');
+-- INSERT INTO message (userid, fetched, content,icon)
+-- VALUES
+-- ('1','0','watch', '/Uploads/Push/aa2.jpg'),
+-- ('2','0','fish','/Uploads/Push/aa2.jpg'),
+-- ('1','0','bag','/Uploads/Push/aa2.jpg');
 
 DROP TABLE IF EXISTS fishkind;
 CREATE TABLE fishkind (

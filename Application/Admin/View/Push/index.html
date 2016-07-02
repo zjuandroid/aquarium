@@ -4,12 +4,12 @@
     
     <div class="row">
         <div class="col-md-6">
-            <a href="{:U('push/add')}" class="btn btn-success">添加消息</a>
+            <a href="{:U('push/add')}" class="btn btn-success">新建消息</a>
         </div>
         <div class="col-md-6">
             <form action="{:U('push/index')}" method="post">
                 <div class="form-group input-group">
-                    <input type="text" class="form-control" name="key" placeholder="输入链接标题或者地址关键词搜索">
+                    <input type="text" class="form-control" name="key" placeholder="输入消息关键词搜索">
                     <span class="input-group-btn">
                       <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
                     </span>
@@ -17,24 +17,24 @@
             </form>
         </div>
     </div>
-    <table class="table table-hover table-striped">
+    <table class="fixtable table-hover table-striped">
         <thead>
             <tr>
-                <th>编号</th>
-                <th>标题</th>
-                <th>地址</th>
-                <th>优先级</th>
-                <th>操作</th>
+                <th class="col-md-2">编号</th>
+                <th class="col-md-2">标题</th>
+                <th class="col-md-6">内容</th>
+                <th class="col-md-2">推送日期</th>
+                <!--<th>操作</th>-->
             </tr>
         </thead>
         <tbody>
         <foreach name="model" item="v">
             <tr>
-                <td>{$v.id}</td>
-                <td>{$v.title}</td>
-                <td>{$v.url}</td>
-                <td>{$v.sort}</td> 
-                <td><a href="{:U('links/update?id=')}{$v.id}">编辑</a> | <a href="{:U('links/delete?id=')}{$v.id}" style="color:red;" onclick="javascript:return del('您真的确定要删除吗？\n\n删除后将不能恢复!');">删除</a></td>
+                <td class="col-md-2">{$v.id}</td>
+                <td class="col-md-2">{$v.title}</td>
+                <td class="col-md-6">{$v.content}</td>
+                <td class="col-md-2">{$v.create_time|date="Y/m/d",###}</td>
+                <!--<td><a href="{:U('links/update?id=')}{$v.id}">编辑</a> | <a href="{:U('links/delete?id=')}{$v.id}" style="color:red;" onclick="javascript:return del('您真的确定要删除吗？\n\n删除后将不能恢复!');">删除</a></td>-->
             </tr>
         </foreach>
         </tbody>

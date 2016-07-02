@@ -14,56 +14,46 @@ class PushController extends BaseController
     public function index($key="")
     {
         if($key === ""){
-            $model = M('links');
+            $model = M('message');
         }else{
             $where['title'] = array('like',"%$key%");
-            $where['url'] = array('like',"%$key%");
+            $where['content'] = array('like',"%$key%");
             $where['_logic'] = 'or';
-            $model = M('links')->where($where); 
+            $model = M('message')->where($where);
         } 
         
         $count  = $model->where($where)->count();// 查询满足要求的总记录数
-        $Page = new \Extend\Page($count,15);// 实例化分页类 传入总记录数和每页显示的记录数(25)
-        $show = $Page->show();// 分页显示输出
-        $links = $model->limit($Page->firstRow.','.$Page->listRows)->where($where)->order('id DESC')->select();
+        $page = new \Extend\Page($count,C('PAGE_COUNT'));// 实例化分页类 传入总记录数和每页显示的记录数(25)
+        $show = $page->show();// 分页显示输出
+        $links = $model->limit($page->firstRow.','.$page->listRows)->where($where)->order('id DESC')->select();
         $this->assign('model', $links);
         $this->assign('page',$show);
         $this->display();     
     }
 
-    function uploadMessage() {
-
-    }
-
     function sendMessage($data) {
-        vendor('Umeng.android.AndroidBroadcast');
+        $model = D("message");
+        if (!$model->create()) {
+            // 如果创建失败 表示验证没有通过 输出错误提示信息
+            $this->error($model->getError());
+            exit();
+        } else {
+            $data['pic'] = substr(C('AVATAR_ROOT_PATH'), 1).C('MESSAGE_IMAGE_SAVE_PATH').$data['pic'];
+            $flag = sendAndroidMessage($data);
+            if(!$flag) {
+                $this->error("消息推送失败");
+            }
 
-        $appKey = '575e335ae0f55a1141001196';
-        $appMasterSecret = 'lbfmvyhrerw5iwjrnigakngyipuqrjdy';
+            $flag = sendIOSBroadcast($data);
+            if(!$flag) {
+                $this->error("IOS消息推送失败");
+            }
 
-        try {
-            $brocast = new \AndroidBroadcast();
-            $brocast->setAppMasterSecret(C('APP_MASTER_SECRET_ANDROID'));
-            $brocast->setPredefinedKeyValue("appkey",           C('APP_KEY_ANDROID'));
-//            $brocast->setAppMasterSecret($appMasterSecret);
-//            $brocast->setPredefinedKeyValue("appkey",           $appKey);
-            $brocast->setPredefinedKeyValue("timestamp",        strval(time()));
-            $brocast->setPredefinedKeyValue("ticker",           "Android broadcast ticker");
-            $brocast->setPredefinedKeyValue("title",            $data['title']);
-            $brocast->setPredefinedKeyValue("text",             $data['content']);
-            $brocast->setPredefinedKeyValue("after_open",       "go_app");
-            // Set 'production_mode' to 'false' if it's a test device.
-            // For how to register a test device, please see the developer doc.
-            $brocast->setPredefinedKeyValue("production_mode", "true");
-            // [optional]Set extra fields
-            $brocast->setExtraField("icon", $data['icon']);
-            $brocast->setExtraField("pic", $data['pic']);
-            $brocast->setExtraField("url", $data['url']);
-            print("Sending broadcast notification, please wait...\r\n");
-            $brocast->send();
-            print("Sent SUCCESS\r\n");
-        } catch (Exception $e) {
-            print("Caught exception: " . $e->getMessage());
+            if ($model->add()) {
+                $this->success("消息推送成功", U('Push/index'));
+            } else {
+                $this->error("消息已经送出，但是没有记录在本地服务器中");
+            }
         }
     }
 
@@ -81,7 +71,6 @@ class PushController extends BaseController
             $data['title'] = I('post.title');
             $data['content'] = I('post.content');
             $data['url'] = I('post.url');
-            dump($data);
 
             $upload = new Upload();// 实例化上传类
             $upload->maxSize = C('AVATAR_MAX_SIZE') ;// 设置附件上传大小
@@ -92,27 +81,14 @@ class PushController extends BaseController
             // 上传文件
             $info   =   $upload->upload();
             if(!$info) {// 上传错误提示错误信息
-                echo($upload->getError());
+                $this->error($upload->getError());
             }else{// 上传成功
                 $data['pic'] = $info['pic']['savename'];
-                $data['icon'] = $info['icon']['savename'];
+//                $data['icon'] = $info['icon']['savename'];
 
-                dump($data);
-                sendMessage($data);
+//                dump($data);
+                $this->sendMessage($data);
             }
-
-//            $model = D("links");
-//            if (!$model->create()) {
-//                // 如果创建失败 表示验证没有通过 输出错误提示信息
-//                $this->error($model->getError());
-//                exit();
-//            } else {
-//                if ($model->add()) {
-//                    $this->success("链接添加成功", U('links/index'));
-//                } else {
-//                    $this->error("链接添加失败");
-//                }
-//            }
         }
     }
     /**

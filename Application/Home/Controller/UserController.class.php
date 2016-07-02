@@ -168,7 +168,8 @@ class UserController extends BaseController {
         $result['avatar'] = $path ? substr(C('AVATAR_ROOT_PATH'), 1).C('AVATAR_SAVE_PATH').$path : '';
 
         $str = $data['good_at'];
-        if($str) {
+
+        if(validateListStr($str) && (strlen($str) > 2)) {
             $str = str_replace(array('[', ']'), array('(', ')'), $str);
             $result['fishType'] = M('fishkind')->field('id, name')->where('id in ' . $str)->select();
         }
@@ -223,7 +224,7 @@ class UserController extends BaseController {
 //        $data = M('feedback')->where($condition)->getField('id,answer_time,answer', ':');
 //        $data = M('feedback')->where($condition)->getField('id,answer_time,answer');
         $data = M('feedback')->field('id,answer_time,answer')->where($condition)->select();
-        dump($data);
+
         $update['isread'] = 1;
 //        dump(date('Y-m-d H:i:s'));
         if($data) {

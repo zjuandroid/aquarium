@@ -2,11 +2,11 @@
 <div id="page-wrapper">
     <div class="row">
         <div class="col-sm-8 col-md-9">
-            <legendList vertical-align="middle">昵称：{$user.nickname}</legendList>
-            <legendList vertical-align="middle">性别：{$user.gender}</legendList>
-            <legendList vertical-align="middle">所在地区：{$user.area_address}</legendList>
-            <legendList vertical-align="middle">街道地址：{$user.district_address}</legendList>
-            <legendList vertical-align="middle">养鱼经验：{$user.feed_year}年</legendList>
+            <MyLegendList vertical-align="middle">昵称：{$user.nickname}</MyLegendList>
+            <MyLegendList vertical-align="middle">性别：{$user.gender}</MyLegendList>
+            <MyLegendList vertical-align="middle">所在地区：{$user.area_address}</MyLegendList>
+            <MyLegendList vertical-align="middle">街道地址：{$user.district_address}</MyLegendList>
+            <MyLegendList vertical-align="middle">养鱼经验：{$user.feed_year}年</MyLegendList>
         </div>
         <!--<div class="col-md-6">-->
             <!--<img src=__ROOT__/Uploads/Avatar/57610b640b1d5.jpg width=50 height=60 vertical-align="middle">-->
@@ -19,7 +19,7 @@
         </div>
     </div>
     <div>
-        <legendList vertical-align="middle">擅长鱼种：{$user.good_at}</legendList>
+        <MyLegendList vertical-align="middle">擅长鱼种：{$user.good_at}</MyLegendList>
     </div>
 
     <table class="fixtable table-hover table-striped table-bordered">
@@ -46,8 +46,10 @@
         </foreach>
         </tbody>
     </table>
-    
 
+    <div class="col-xs-offset-6">
+        <a href="{:U('member/index')}" class="btn btn-success">关闭</a>
+    </div>
 
 </div>
 
