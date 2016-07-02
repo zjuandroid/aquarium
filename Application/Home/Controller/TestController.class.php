@@ -119,7 +119,7 @@ class TestController extends Controller{
 //        $url = 'http://localhost/aquarium/index.php/user/getUserInfo';
         $url = 'http://120.27.216.57/user/getUserInfo';
 
-        $post_data['userid'] = '4';
+        $post_data['userid'] = '1';
 
         $res = request_post($url, $post_data);
         print_r($res);

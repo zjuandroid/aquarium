@@ -323,7 +323,7 @@ VALUES
 DROP TABLE IF EXISTS message;
 CREATE TABLE message (
 id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-userid int(11) NOT NULL,
+userid int(11),
 author varchar(20),
 icon varchar(100),
 picture varchar(100),
