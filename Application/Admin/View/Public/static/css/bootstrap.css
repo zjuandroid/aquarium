@@ -5339,21 +5339,6 @@ a.list-group-item.active > .badge,
           transition: all 0.2s ease-in-out;
 }
 
-.thumbnail2 {
-  display: inline-block;
-  display: block;
-  height: auto;
-  max-width: 100%;
-  padding: 4px;
-  margin-bottom: 20px;
-  line-height: 1.428571429;
-  background-color: #ffffff;
-  border: 1px solid #dddddd;
-  border-radius: 4px;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-}
-
 .thumbnail > img {
   display: block;
   height: auto;
@@ -5369,6 +5354,40 @@ a.thumbnail.active {
 }
 
 .thumbnail .caption {
+  padding: 9px;
+  color: #333333;
+}
+
+.thumbnail2 {
+  display: inline-block;
+  display: block;
+  height: auto;
+  max-width: 100%;
+  padding: 4px;
+  margin-bottom: 20px;
+  line-height: 1.428571429;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.thumbnail2 > img {
+  display: block;
+  height: 160px;
+  max-width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+a.thumbnail2:hover,
+a.thumbnail2:focus,
+a.thumbnail2.active {
+  border-color: #428bca;
+}
+
+.thumbnail2 .caption {
   padding: 9px;
   color: #333333;
 }

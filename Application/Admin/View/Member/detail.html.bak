@@ -7,17 +7,19 @@
             <MyLegendList vertical-align="middle">所在地区：{$user.area_address}</MyLegendList>
             <MyLegendList vertical-align="middle">街道地址：{$user.district_address}</MyLegendList>
             <MyLegendList vertical-align="middle">养鱼经验：{$user.feed_year}年</MyLegendList>
-            <MyLegendList vertical-align="middle">擅长鱼种：{$user.good_at}</MyLegendList>
         </div>
         <!--<div class="col-md-6">-->
             <!--<img src=__ROOT__/Uploads/Avatar/57610b640b1d5.jpg width=50 height=60 vertical-align="middle">-->
         <!--</div>-->
         <div class="col-sm-4 col-md-3">
-            <a href="#" class="thumbnail2">
+            <a href="#" class="thumbnail">
                 <!--<img src=__ROOT__/Uploads/Avatar/57610b640b1d5.jpg alt="用户没有设置头像">-->
                 <img src=__ROOT__{$user.avatar} alt="用户没有设置头像">
             </a>
         </div>
+    </div>
+    <div>
+        <MyLegendList vertical-align="middle">擅长鱼种：{$user.good_at}</MyLegendList>
     </div>
 
     <table class="fixtable table-hover table-striped table-bordered">
