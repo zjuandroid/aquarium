@@ -23,23 +23,23 @@
     <table class="fixtable table-hover table-striped table-bordered">
         <thead>
         <tr>
-            <th class="col-md-2">鱼缸名字</th>
-            <th class="col-md-2">开缸时间</th>
-            <th class="col-md-5">在养鱼种</th>
-            <th class="col-md-2">温度计</th>
-            <th class="col-md-2">智能灯</th>
-            <th class="col-md-2">六孔插座</th>
+            <th class="col-md-1">鱼缸名字</th>
+            <th class="col-md-1">开缸时间</th>
+            <th class="col-md-4">在养鱼种</th>
+            <th class="col-md-1">温度计</th>
+            <th class="col-md-1">智能灯</th>
+            <th class="col-md-1">六孔插座</th>
         </tr>
         </thead>
         <tbody>
         <foreach name="tankList" item="v">
             <tr>
-                <td class="col-md-2">{$v.name}</td>
+                <td class="col-md-1">{$v.name}</td>
                 <td class="col-md-2">{$v.opendate|date='Y-m-d',###}</td>
                 <td class="col-md-5">{$v.fishkinds}</td>
-                <td class="col-md-2">{$v.thermometer_list}个</td>
-                <td class="col-md-2">{$v.light_list}个</td>
-                <td class="col-md-2">{$v.socket}个</td>
+                <td class="col-md-1">{$v.thermometer_list}个</td>
+                <td class="col-md-1">{$v.light_list}个</td>
+                <td class="col-md-1">{$v.socket}个</td>
             </tr>
         </foreach>
         </tbody>

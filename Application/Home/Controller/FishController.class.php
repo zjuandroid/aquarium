@@ -750,4 +750,18 @@ class FishController extends BaseController {
         echo (wrapResult('CM0000'));
     }
 
+    function getMyFishTanks() {
+        $condition['userid'] = I('post.userid');
+
+        $data = M('fishtank')->field('id')->where($condition)->select();
+        $i = 0;
+        foreach($data as $item) {
+            $fishTankArray[$i++] = (int)$item['id'];
+        }
+
+        $ret['fishTankArray'] = $fishTankArray;
+
+        echo (wrapResult('CM0000', $ret));
+    }
+
 }

@@ -5361,7 +5361,7 @@ a.thumbnail.active {
 .thumbnail2 {
   display: inline-block;
   display: block;
-  height: auto;
+  height: 170px;
   max-width: 100%;
   padding: 4px;
   margin-bottom: 20px;

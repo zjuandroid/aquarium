@@ -66,7 +66,12 @@ function sendIOSBroadcast($data) {
 
 function getFishNameStr($str) {
     $str = changeBracket($str);
+    if(strlen($str) <= 2) {
+        return '';
+    }
+
     $fishList = M('fishkind')->field('name')->where('id in '.$str)->select();
+
     $str = '';
     foreach($fishList as $fish) {
         $str .= $fish['name'].',';

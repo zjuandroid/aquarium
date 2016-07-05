@@ -137,10 +137,7 @@ class MemberController extends BaseController
             $tankList[$i]['light_list'] = validateListStr($str) ? count(json_decode($str)):0;
 
             $str = $tankList[$i]['socket'];
-            if($str) {
-                $tankList[$i]['socket'] = $str ? 1:0;
-            }
-
+            $tankList[$i]['socket'] = $str ? 1:0;
         }
 
         if($user) {

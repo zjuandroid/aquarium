@@ -421,6 +421,14 @@ class TestController extends Controller{
         print_r($res);
     }
 
+    function getMyFishTanks() {
+        $url = 'http://localhost/aquarium/index.php/fish/getMyFishTanks';
+
+        $post_data['userid'] = 1;
+
+        $res = request_post($url, $post_data);
+        print_r($res);
+    }
 
     function test() {
 //        $a = '[1,2,4]';
