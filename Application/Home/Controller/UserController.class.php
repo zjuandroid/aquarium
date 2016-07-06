@@ -157,7 +157,8 @@ class UserController extends BaseController {
     function getUserInfo() {
         $condition['id'] = I('post.userid');
 
-        $data = M('member')->field('nickname,avatar,good_at,gender,feed_year,area_address,district_address,username')->where($condition)->select();
+//        $data = M('member')->field('nickname,avatar,good_at,gender,feed_year,area_address,district_address,username')->where($condition)->select();
+        $data = M('member')->where($condition)->select();
         if(!$data) {
             exit (wrapResult('CM0006'));
         }
@@ -181,6 +182,7 @@ class UserController extends BaseController {
         $result['areaDesc'] = $data['area_address'];
         $result['district'] = $data['district_address'];
         $result['phone'] = $data['username'];
+        $result['hasNewMessage'] = $data['has_new_message'];
 
         echo (wrapResult('CM0000', $result));
     }
@@ -188,7 +190,7 @@ class UserController extends BaseController {
     function feedback() {
         $map['userid'] = I('post.userid');
         $map['content'] = I('post.content');
-        $map['answerd'] = 0;
+        $map['answered'] = 0;
 //        $map['feedback_time'] = date('Y-m-d H:i:s');
         $map['feedback_time'] = time();
 
@@ -205,7 +207,7 @@ class UserController extends BaseController {
 
     function custFeedback() {
         $condition['userid'] = I('post.userid');
-        $condition['answerd'] = 1;
+        $condition['answered'] = 1;
         $condition['isread'] = 0;
 
 //        $code = 'CM0000';

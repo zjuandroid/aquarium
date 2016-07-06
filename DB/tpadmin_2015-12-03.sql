@@ -305,11 +305,11 @@ content varchar(200),
 answer varchar(200),
 feedback_time varchar(20),
 answer_time varchar(20),
-answerd tinyint(1) DEFAULT 0,
+answered tinyint(1) DEFAULT 0,
 isread tinyint(1) DEFAULT 0
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO feedback (userid, answer, answer_time,feedback_time, answerd, content)
+INSERT INTO feedback (userid, answer, answer_time,feedback_time, answered, content)
 VALUES
 ('1','haha','2016-06-11 19:48:45','2016-06-11 19:48:45', '0', 'hhaaa'),
 ('3','haha','2016-06-12 19:48:45','2016-06-11 19:48:45', '0', 'hahaha'),

@@ -116,10 +116,10 @@ class TestController extends Controller{
     }
 
     function getUserInfo() {
-//        $url = 'http://localhost/aquarium/index.php/user/getUserInfo';
-        $url = 'http://120.27.216.57/user/getUserInfo';
+        $url = 'http://localhost/aquarium/index.php/user/getUserInfo';
+//        $url = 'http://120.27.216.57/user/getUserInfo';
 
-        $post_data['userid'] = '2';
+        $post_data['userid'] = '1';
 
         $res = request_post($url, $post_data);
         print_r($res);
@@ -421,8 +421,8 @@ class TestController extends Controller{
         print_r($res);
     }
 
-    function getMyFishTanks() {
-        $url = 'http://localhost/aquarium/index.php/fish/getMyFishTanks';
+    function getFishTankList() {
+        $url = 'http://localhost/aquarium/index.php/fish/getFishTankList';
 
         $post_data['userid'] = 1;
 
@@ -430,11 +430,26 @@ class TestController extends Controller{
         print_r($res);
     }
 
+    function getFishTankInfo() {
+        $url = 'http://localhost/aquarium/index.php/fish/getFishTankInfo';
+
+        $post_data['fishTankId'] = 1;
+
+        $res = request_post($url, $post_data);
+        print_r($res);
+    }
+
+
+
+
+
     function test() {
 //        $a = '[1,2,4]';
 //        $obj = json_decode($a);
 //        dump($obj);
         echo date("Y-m-d H:i:s",1466354044);     # 格式化时间戳
     }
+
+
 
 }

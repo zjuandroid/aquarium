@@ -117,7 +117,7 @@ class FishController extends BaseController {
         $data['status'] = $dao->getField('tank_status');
 //        $data['preSetTempreture'] = $dao->getField('pre_set_temp');
         $str = $dao->getField('thermometer_list');
-        if($str) {
+        if(validateListStr($str) && strlen($str) > 2) {
             $str = str_replace(array('[',']'), array('(', ')'), $str);
 //            $data['thermometerList'] = M('thermometer')->where('id in '.$str)->getField('id,name,cur_temp');
             $data['thermometerList'] = M('thermometer')->field('id,name,cur_temp,dis_order')->where('id in '.$str)->order('dis_order')->select();
@@ -750,18 +750,51 @@ class FishController extends BaseController {
         echo (wrapResult('CM0000'));
     }
 
-    function getMyFishTanks() {
+    function getFishTankList() {
         $condition['userid'] = I('post.userid');
 
-        $data = M('fishtank')->field('id')->where($condition)->select();
-        $i = 0;
-        foreach($data as $item) {
-            $fishTankArray[$i++] = (int)$item['id'];
+        $data = M('fishtank')->field('id,name,length,width,heigth')->where($condition)->select();
+//        dump($data);
+//        $i = 0;
+//        foreach($data as $item) {
+//            $fishTankArray[$i++] = (int)$item['id'];
+//        }
+
+        if(empty($data)) {
+            $ret['fishTankArray'] = null;
+        } else {
+            $ret['fishTankArray'] = $data;
         }
 
-        $ret['fishTankArray'] = $fishTankArray;
-
         echo (wrapResult('CM0000', $ret));
+    }
+
+
+    function getFishTankInfo() {
+        $condition['id'] = I('post.fishTankId');
+
+        $data = M('fishtank')->field('name,length,width,heigth,opendate,fishkinds')->where($condition)->select();
+        if(empty($data)) {
+            exit (wrapResult('FH0002'));
+        } else {
+            $data = $data[0];
+        }
+
+        $str = $data['fishkinds'];
+        if(validateListStr($str) && (strlen($str) > 2)) {
+            $str = str_replace(array('[', ']'), array('(', ')'), $str);
+            $result['fishKinds'] = M('fishkind')->field('id, name')->where('id in ' . $str)->select();
+        }
+        else {
+            $result['fishKinds'] = null;
+        }
+        $result['name'] = $data['name'];
+        $result['length'] = $data['length'];
+        $result['width'] = $data['width'];
+        $result['heigth'] = $data['heigth'];
+        $result['openDate'] = $data['opendate'];
+
+        echo wrapResult('CM0000', $result);
     }
 
 }

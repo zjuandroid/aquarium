@@ -23,7 +23,8 @@
             <tr>
                 <th class="col-md-2">意见编号</th>
                 <th class="col-md-2">用户手机</th>
-                <th class="col-md-6">意见内容</th>
+                <th class="col-md-4">意见内容</th>
+                <th class="col-md-2">状态</th>
                 <th class="col-md-2">操作</th>
             </tr>
         </thead>
@@ -32,9 +33,15 @@
             <tr>
                 <td class="col-md-2">{$v.id}</td>
                 <td class="col-md-2">{$v.username}</td>
-                <td class="col-md-6">{$v.content}</td>
-
-                <td class="col-md-2"><a href="{:U('feedback/answer?id=')}{$v.id}">回复</a> | <a href="{:U('feedback/delete?id=')}{$v.id}" style="color:red;" onclick="javascript:return del('您真的确定要删除吗？\n\n删除后将不能恢复!');">删除</a></td>
+                <td class="col-md-4">{$v.content}</td>
+                <td class="col-md-2"><if condition="$v.answered eq 1">已回复<else/><span>未回复</span></if></td>
+                <!--<td class="col-md-2"><a href="{:U('feedback/answer?id=')}{$v.id}">回复</a> | <a href="{:U('feedback/delete?id=')}{$v.id}" style="color:red;" onclick="javascript:return del('您真的确定要删除吗？\n\n删除后将不能恢复!');">删除</a></td>-->
+                <!--<td class="col-md-2"><if condition="$v.answered eq 1"><else/><a href="{:U('feedback/answer?id=')}{$v.id}">回复</a> | </if><a href="{:U('feedback/delete?id=')}{$v.id}" style="color:red;" onclick="javascript:return del('您真的确定要删除吗？\n\n删除后将不能恢复!');">删除</a></td>-->
+                <if condition="$v.answered eq 1">
+                    <td class="col-md-2"><a href="{:U('feedback/view?id=')}{$v.id}">查看</a> | <a href="{:U('feedback/delete?id=')}{$v.id}" style="color:red;" onclick="javascript:return del('您真的确定要删除吗？\n\n删除后将不能恢复!');">删除</a></td>
+                <else/>
+                    <td class="col-md-2"><a href="{:U('feedback/answer?id=')}{$v.id}">回复</a> | <a href="{:U('feedback/delete?id=')}{$v.id}" style="color:red;" onclick="javascript:return del('您真的确定要删除吗？\n\n删除后将不能恢复!');">删除</a></td>
+                </if>
             </tr>
         </foreach>
         </tbody>

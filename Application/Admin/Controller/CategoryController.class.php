@@ -14,7 +14,7 @@ class CategoryController extends BaseController
     {
         if($key === ""){
             $model = M('feedback');
-            $where['answerd'] = 0;
+            $where['answered'] = 0;
         }else{
             //            $where['title'] = array('like',"%$key%");
 //            $where['name'] = array('like',"%$key%");
@@ -50,7 +50,7 @@ class CategoryController extends BaseController
     {
         if($key === ""){
             $model = M('feedback');
-            $where['answerd'] = 0;
+            $where['answered'] = 0;
         }else{
             $where['username'] = array('like',"%$key%");
             $where['content'] = array('like',"%$key%");
@@ -92,7 +92,7 @@ class CategoryController extends BaseController
         }
         if(IS_POST) {
             $condition['id'] = I('post.id');
-            $data['answerd'] = 1;
+            $data['answered'] = 1;
 //            $data['answer_time'] = date('Y-m-d H:i:s');
             $data['answer_time'] = time();
             $data['answer'] = I('post.answer');

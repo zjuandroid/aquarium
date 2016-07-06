@@ -38,7 +38,8 @@ class PushController extends BaseController
             $this->error($model->getError());
             exit();
         } else {
-            $data['pic'] = substr(C('AVATAR_ROOT_PATH'), 1).C('MESSAGE_IMAGE_SAVE_PATH').$data['pic'];
+            $store = $data['picture'];
+            $data['picture'] = substr(C('AVATAR_ROOT_PATH'), 1).C('MESSAGE_IMAGE_SAVE_PATH').$data['picture'];
             $flag = sendAndroidMessage($data);
             if(!$flag) {
                 $this->error("消息推送失败");
@@ -48,8 +49,10 @@ class PushController extends BaseController
             if(!$flag) {
                 $this->error("IOS消息推送失败");
             }
-
-            if ($model->add()) {
+            $data['picture'] = $store;
+            //type = 1, 表示新品推荐
+            $data['type'] = 1;
+            if ($model->add($data)) {
                 $this->success("消息推送成功", U('Push/index'));
             } else {
                 $this->error("消息已经送出，但是没有记录在本地服务器中");
@@ -83,7 +86,7 @@ class PushController extends BaseController
             if(!$info) {// 上传错误提示错误信息
                 $this->error($upload->getError());
             }else{// 上传成功
-                $data['pic'] = $info['pic']['savename'];
+                $data['picture'] = $info['picture']['savename'];
 //                $data['icon'] = $info['icon']['savename'];
 
 //                dump($data);

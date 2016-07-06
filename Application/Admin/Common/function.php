@@ -20,7 +20,7 @@ function sendAndroidMessage($data) {
         $brocast->setPredefinedKeyValue("production_mode", "true");
         // [optional]Set extra fields
 //        $brocast->setExtraField("icon", $data['icon']);
-        $brocast->setExtraField("pic", $data['pic']);
+        $brocast->setExtraField("picture", $data['picture']);
         $brocast->setExtraField("url", $data['url']);
 //        print("Sending broadcast notification, please wait...\r\n");
 
@@ -50,7 +50,7 @@ function sendIOSBroadcast($data) {
         // Set customized fields
         $brocast->setCustomizedField("title", $data['title']);
         $brocast->setCustomizedField("text", $data['content']);
-        $brocast->setCustomizedField("pic", $data['pic']);
+        $brocast->setCustomizedField("picture", $data['picture']);
         $brocast->setCustomizedField("url", $data['url']);
 //        print("Sending broadcast notification, please wait...\r\n");
         $brocast->send();

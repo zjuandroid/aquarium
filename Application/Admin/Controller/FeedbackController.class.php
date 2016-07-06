@@ -14,12 +14,12 @@ class FeedbackController extends BaseController
     {
         if($key === ""){
             $model = M('feedback');
-            $where['answerd'] = 0;
+//            $where['answered'] = 1;
         }else{
-//            $where['username'] = array('like',"%$key%");
-//            $where['content'] = array('like',"%$key%");
-//            $where['_logic'] = 'or';
-            $where = 'answerd = 0 and (username like "%'.$key.'%" or content like "%'.$key.'%")';
+            $where['username'] = array('like',"%$key%");
+            $where['content'] = array('like',"%$key%");
+            $where['_logic'] = 'or';
+//            $where = 'answered = 0 and (username like "%'.$key.'%" or content like "%'.$key.'%")';
 //            dump($where);
 //            $model = M()->field('t1.username, t2.id, t2.userid, t2.content')->table('member as t1')->join('feedback as t2 on t1.id=t2.userid');
             $member = M('member');
@@ -57,7 +57,7 @@ class FeedbackController extends BaseController
         }
         if(IS_POST) {
             $condition['id'] = I('post.id');
-            $data['answerd'] = 1;
+            $data['answered'] = 1;
 //            $data['answer_time'] = date('Y-m-d H:i:s');
             $data['answer_time'] = time();
             $data['answer'] = I('post.answer');

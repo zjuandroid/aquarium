@@ -110,6 +110,7 @@ CREATE TABLE `member` (
   `feed_year` float DEFAULT NULL,
   `area_address` varchar(40) DEFAULT NULL,
   `district_address` varchar(40) DEFAULT NULL,
+  `has_new_message` tinyint(1) DEFAULT '0' COMMENT '0:没有新消息 1:有新消息',
 
   `status` tinyint(1) DEFAULT '1' COMMENT '0:禁止登陆 1:正常',
   `type` tinyint(1) DEFAULT '1' COMMENT '1:前台用户 2:管理员 ',
@@ -311,11 +312,11 @@ content varchar(200),
 answer varchar(200),
 feedback_time varchar(20),
 answer_time varchar(20),
-answerd tinyint(1) DEFAULT 0,
+answered tinyint(1) DEFAULT 0,
 isread tinyint(1) DEFAULT 0
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO feedback (userid, answer, answer_time,feedback_time, answerd, content)
+INSERT INTO feedback (userid, answer, answer_time,feedback_time, answered, content)
 VALUES
 ('1','haha','1466418002','1466418001', '0', 'hhaaa'),
 ('1','haha','1466418004','1466418003', '0', 'hhahahahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh');
