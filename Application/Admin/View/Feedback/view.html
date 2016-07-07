@@ -14,11 +14,11 @@
         </div>
         <div class="form-group">
             <label for="ee">客服回复：</label>
-            <textarea name="answer" id="ee" cols="30" rows="5" class="form-control" placeholder="请在此输入回复">{$model.description}</textarea>
+            <textarea readonly name="answer" id="ee" cols="30" rows="5" class="form-control" placeholder="{$model.answer}">{$model.description}</textarea>
         </div>
         <input type="hidden" name="id" value="{$model.id}">
-        <div class="form-group col-xs-offset-6">
-            <button type="submit" class="btn btn-success">回复</button>
+        <div class="col-xs-offset-6">
+            <a href="{:U('feedback/index')}" class="btn btn-success">关闭</a>
         </div>
     </form>
 </div>

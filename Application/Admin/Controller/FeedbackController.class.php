@@ -72,6 +72,18 @@ class FeedbackController extends BaseController
         }
     }
 
+    function view() {
+        if (!IS_POST) {
+            $id = I('get.id');
+            $data = M('member')->join('feedback ON member.id = feedback.userid')->where('feedback.id=' . $id)->select();
+            if($data) {
+                $data = $data[0];
+            }
+            $this->assign('model', $data);
+            $this->display();
+        }
+    }
+
     /**
      * 删除分类
      * @param  [type] $id [description]

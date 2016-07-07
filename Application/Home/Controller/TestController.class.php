@@ -439,7 +439,17 @@ class TestController extends Controller{
         print_r($res);
     }
 
+    function getMessage() {
+        $url = 'http://localhost/aquarium/index.php/user/getMessage';
 
+        $post_data['userid'] = 1;
+        $post_data['count'] = 3;
+        $post_data['page'] = 1;
+        $post_data['type'] = 'recommend';
+
+        $res = request_post($url, $post_data);
+        print_r($res);
+    }
 
 
 

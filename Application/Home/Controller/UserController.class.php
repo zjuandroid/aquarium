@@ -247,7 +247,7 @@ class UserController extends BaseController {
 
     }
 
-    function getMessages()
+    function getMessages1()
     {
         $condition['userid'] = I('post.userid');
         $condition['fetched'] = 0;
@@ -276,6 +276,37 @@ class UserController extends BaseController {
         else {
             echo wrapResult('CM0000');
         }
+    }
+
+    function getMessage() {
+        $userid = I('post.userid');
+        $type = I('post.type');
+        $count = (int) I('post.count');
+        $page = (int) I('post.page');
+
+        $dao = M('message');
+
+        $first = ($page - 1) * $count;
+        if($type == 'alert') {
+            $ret['totalNum'] = $dao->where('type=2 and userid='.$userid)->count();
+//            $page = new \Extend\Page($ret['totalNum'],$count);
+            $ret['messages'] = $dao->limit($first, $count)->field('id,title,content,picture,url,create_time')->where('type=2 and userid='.$userid)->order('id DESC')->select();
+        }
+        else if($type == 'recommend') {
+            $ret['totalNum'] = $dao->where('type=1')->count();
+            $ret['messages'] = $dao->limit($first, $count)->field('id,title,content,picture,url,create_time')->where('type=1')->order('id DESC')->select();
+        }
+
+        if(count($ret['messages']) == 0) {
+            $ret['messages'] = null;
+        } else {
+            for($i = 0; $i < count($ret['messages']); $i++) {
+                $picName = $ret['messages'][$i]['picture'];
+                $ret['messages'][$i]['picture'] = $ret['messages'][$i]['picture'] ? substr(C('AVATAR_ROOT_PATH'), 1).C('MESSAGE_IMAGE_SAVE_PATH').$picName : '';
+            }
+        }
+
+        echo wrapResult('CM0000', $ret);
     }
 
 }

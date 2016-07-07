@@ -40,19 +40,23 @@ class PushController extends BaseController
         } else {
             $store = $data['picture'];
             $data['picture'] = substr(C('AVATAR_ROOT_PATH'), 1).C('MESSAGE_IMAGE_SAVE_PATH').$data['picture'];
-            $flag = sendAndroidMessage($data);
-            if(!$flag) {
-                $this->error("消息推送失败");
-            }
-
-            $flag = sendIOSBroadcast($data);
-            if(!$flag) {
-                $this->error("IOS消息推送失败");
-            }
+//            $flag = sendAndroidMessage($data);
+//            if(!$flag) {
+//                $this->error("消息推送失败");
+//            }
+//
+//            $flag = sendIOSBroadcast($data);
+//            if(!$flag) {
+//                $this->error("IOS消息推送失败");
+//            }
             $data['picture'] = $store;
             //type = 1, 表示新品推荐
             $data['type'] = 1;
+            $data['create_time'] = time();
             if ($model->add($data)) {
+//                $flag = M('member')->where('id=1')->setField('has_new_message', '1');
+                $flag = M('member')->execute('update __TABLE__ set has_new_message=1');
+
                 $this->success("消息推送成功", U('Push/index'));
             } else {
                 $this->error("消息已经送出，但是没有记录在本地服务器中");
