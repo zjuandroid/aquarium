@@ -40,15 +40,15 @@ class PushController extends BaseController
         } else {
             $store = $data['picture'];
             $data['picture'] = substr(C('AVATAR_ROOT_PATH'), 1).C('MESSAGE_IMAGE_SAVE_PATH').$data['picture'];
-//            $flag = sendAndroidMessage($data);
-//            if(!$flag) {
-//                $this->error("消息推送失败");
-//            }
-//
-//            $flag = sendIOSBroadcast($data);
-//            if(!$flag) {
-//                $this->error("IOS消息推送失败");
-//            }
+            $flag = sendAndroidMessage($data);
+            if(!$flag) {
+                $this->error("消息推送失败");
+            }
+
+            $flag = sendIOSBroadcast($data);
+            if(!$flag) {
+                $this->error("IOS消息推送失败");
+            }
             $data['picture'] = $store;
             //type = 1, 表示新品推荐
             $data['type'] = 1;
