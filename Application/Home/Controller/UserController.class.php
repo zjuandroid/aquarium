@@ -306,6 +306,11 @@ class UserController extends BaseController {
             }
         }
 
+        $flag = M('member')->where('id='.$userid)->setField('has_new_message', 0);
+        if($flag === false) {
+            exit('CM0002');
+        }
+
         echo wrapResult('CM0000', $ret);
     }
 

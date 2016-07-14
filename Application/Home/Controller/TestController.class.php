@@ -440,9 +440,10 @@ class TestController extends Controller{
     }
 
     function getMessage() {
-        $url = 'http://localhost/aquarium/index.php/user/getMessage';
+//        $url = 'http://localhost/aquarium/index.php/user/getMessage';
+        $url = 'http://120.27.216.57/user/getMessage';
 
-        $post_data['userid'] = 1;
+        $post_data['userid'] = 6;
         $post_data['count'] = 3;
         $post_data['page'] = 1;
         $post_data['type'] = 'recommend';

@@ -45,7 +45,8 @@ class LoginController extends Controller {
         if($member->save($data)){
             session('adminId',$user['id']);
             session('username',$user['username']);
-            $this->success("登陆成功",U('Index/index'));
+//            $this->success("登陆成功",U('Index/index'));
+            $this->redirect('Index/index');
         }
         //定向之后台主页
         

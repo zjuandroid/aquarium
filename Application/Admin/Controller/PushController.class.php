@@ -57,7 +57,8 @@ class PushController extends BaseController
 //                $flag = M('member')->where('id=1')->setField('has_new_message', '1');
                 $flag = M('member')->execute('update __TABLE__ set has_new_message=1');
 
-                $this->success("消息推送成功", U('Push/index'));
+//                $this->success("消息推送成功", U('Push/index'),0);
+                $this->redirect('Push/index');
             } else {
                 $this->error("消息已经送出，但是没有记录在本地服务器中");
             }
