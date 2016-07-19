@@ -331,7 +331,7 @@ picture varchar(100),
 title varchar(40),
 create_time varchar(20),
 read_time varchar(20),
-url varchar(100),
+url varchar(500),
 fetched tinyint(1) DEFAULT 0,
 type tinyint(2) DEFAULT 1 COMMENT '1:新品推荐,2:灯光色温',
 content varchar(400)
